@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+/*
+ * Global styles are shared by the hub page and all ten sample sites,
+ * so keep this file minimal. Each sample site owns its look through
+ * its own layout + CSS Module under app/<site-slug>/.
+ */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
