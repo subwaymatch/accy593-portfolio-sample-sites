@@ -72,6 +72,16 @@ export default function AbTestChart() {
   return (
     <div className={styles.panel}>
       <p className={styles.sampleNote}>Sample data · 4,000 recipients per version</p>
+      <dl className={demo.variants}>
+        <div>
+          <dt>A</dt>
+          <dd>“Our fall restock is here”</dd>
+        </div>
+        <div>
+          <dt>B</dt>
+          <dd>“12 books our staff can’t stop passing around”</dd>
+        </div>
+      </dl>
       <h4 className={demo.chartTitle}>Open and click rates with 95% confidence intervals</h4>
       <div className={demo.abGrid}>
         {metrics.map((m) => (
@@ -91,13 +101,13 @@ export default function AbTestChart() {
           </thead>
           <tbody>
             <tr>
-              <th scope="row">A: “Our fall restock is here”</th>
+              <th scope="row">Version A</th>
               <td>4,000</td>
               <td>964</td>
               <td>124</td>
             </tr>
             <tr>
-              <th scope="row">B: “12 books our staff can’t stop passing around”</th>
+              <th scope="row">Version B</th>
               <td>4,000</td>
               <td>1,116</td>
               <td>156</td>

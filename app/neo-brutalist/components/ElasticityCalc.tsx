@@ -61,7 +61,10 @@ export default function ElasticityCalc() {
   const e = priceMoved ? ((Q2 - Q1) / ((Q1 + Q2) / 2)) / ((P2 - P1) / ((P1 + P2) / 2)) : NaN;
 
   let verdict = "";
-  if (Number.isFinite(e)) {
+  if (Number.isFinite(e) && e > 0) {
+    verdict =
+      "Positive: sales went up along with the price, so something else changed too (a promo, the weather, move-in week). I would not price off this one.";
+  } else if (Number.isFinite(e)) {
     const a = Math.abs(e);
     verdict =
       a < 0.95
@@ -73,7 +76,8 @@ export default function ElasticityCalc() {
 
   // Projection from the latest observed point (P2, Q2), constant elasticity.
   const newP = P2 * (1 + change / 100);
-  const newQ = Number.isFinite(e) ? Q2 * Math.pow(newP / P2, e) : NaN;
+  const usable = Number.isFinite(e) && e <= 0;
+  const newQ = usable ? Q2 * Math.pow(newP / P2, e) : NaN;
   const baseRev = P2 * Q2;
   const newRev = newP * newQ;
   const unitCost = Number.isFinite(C) && C >= 0 ? C : 0;
@@ -114,7 +118,7 @@ export default function ElasticityCalc() {
         </div>
       </fieldset>
 
-      <fieldset className={demo.fieldset} disabled={!Number.isFinite(e)}>
+      <fieldset className={demo.fieldset} disabled={!usable}>
         <legend>2 · Use it: try a new price</legend>
         <div className={demo.fieldGrid}>
           <NumField label="Unit cost (ingredients + cup)" prefix="$" value={cost} onChange={setCost} />

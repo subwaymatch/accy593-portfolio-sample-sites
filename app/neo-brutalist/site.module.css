@@ -352,6 +352,12 @@
   font-size: clamp(2.2rem, 5vw, 3.6rem);
 }
 
+.sectionIntro {
+  margin-top: 0.9rem;
+  max-width: 52ch;
+  font-size: 1.05rem;
+}
+
 .sectionNum {
   display: inline-block;
   font-family: var(--nb-body), sans-serif;
@@ -440,10 +446,18 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gridItem {
+  display: flex;
 }
 
 .card {
   position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -634,6 +648,16 @@
   border-bottom: var(--border);
 }
 
+.dialogMeta {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.dialogCount {
+  font-weight: 500;
+}
+
 .dialogTitle {
   font-family: var(--nb-display), sans-serif;
   font-size: clamp(1.4rem, 3.2vw, 2rem);
@@ -704,6 +728,44 @@
   padding: 0.1rem 0.5rem;
   font-size: 0.85rem;
   font-weight: 700;
+}
+
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: var(--border);
+}
+
+.pager .btn {
+  justify-content: space-between;
+  text-align: left;
+  min-width: 0;
+}
+
+.pagerNext {
+  grid-column: 2;
+  background: var(--yellow);
+  text-align: right;
+}
+
+.pagerNext .pagerText {
+  text-align: right;
+}
+
+.pagerText {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.pagerText small {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 /* ---------- responsive ---------- */
@@ -812,6 +874,22 @@
 
   .dialogBody {
     padding: 1.25rem 1rem 1.75rem;
+  }
+
+  .pager {
+    grid-template-columns: 1fr;
+  }
+
+  .pagerNext {
+    grid-column: 1;
+  }
+
+  .panel {
+    padding: 0.9rem;
+  }
+
+  .pagerNext .pagerText {
+    text-align: left;
   }
 
   .hero {
