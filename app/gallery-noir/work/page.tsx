@@ -36,7 +36,8 @@ export default function WorkIndex() {
                 <span className={s.roomHeadNumeral}>{room.numeral}</span>
                 <div>
                   <h2 id={`gn-room-${room.id}`} className={s.roomHeadName}>
-                    Room {room.numeral}: {room.name}
+                    <span className={s.srOnly}>Room {room.numeral}: </span>
+                    {room.name}
                   </h2>
                   <p className={s.roomHeadNote}>{room.note}</p>
                 </div>
@@ -45,7 +46,10 @@ export default function WorkIndex() {
                 {works.map((w) => (
                   <li key={w.slug} className={s.exhibitRow} data-reveal>
                     <Link href={`${BASE}/work/${w.slug}`} className={s.exhibitLink}>
-                      <span className={s.exhibitNo}>No. {w.no}</span>
+                      <span className={s.exhibitNo}>
+                        <span className={s.noLabel}>No. </span>
+                        {w.no}
+                      </span>
                       <div>
                         <h3 className={s.exhibitTitle}>{w.title}</h3>
                         <p className={s.exhibitSub}>{w.subtitle}</p>

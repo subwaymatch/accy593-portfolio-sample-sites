@@ -172,9 +172,11 @@
 
 .heroLede {
   margin: 1.5rem 0 2.25rem;
-  max-width: 36rem;
-  color: var(--gn-muted);
-  font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+  max-width: 38rem;
+  color: rgba(236, 230, 218, 0.86);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes gnFade {
@@ -201,7 +203,7 @@
 
 /* ───────────────────────── Home: statement ───────────────────────── */
 .statement {
-  padding: clamp(5rem, 12vw, 10rem) 0;
+  padding-block: clamp(5rem, 12vw, 10rem);
 }
 
 .statementText {
@@ -371,7 +373,7 @@
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: clamp(2rem, 6vw, 6rem);
   align-items: center;
-  padding: clamp(5rem, 10vw, 8rem) 0;
+  padding-block: clamp(5rem, 10vw, 8rem);
 }
 
 .teaserImg {
@@ -394,7 +396,8 @@
 
 /* ───────────────────────── Page header (about / work) ───────────────────────── */
 .pageHead {
-  padding: clamp(8rem, 16vw, 12rem) 0 clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(8rem, 16vw, 12rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
 }
 
 .pageTitle {
@@ -474,6 +477,7 @@
 }
 
 .exhibitNo {
+  white-space: nowrap;
   font-size: 0.75rem;
   letter-spacing: 0.22em;
   color: var(--gn-gold-text);
@@ -497,7 +501,8 @@
   font-style: italic;
   color: var(--gn-muted);
   font-size: 1.05rem;
-  margin: 0.15rem 0 0;
+  line-height: 1.35;
+  margin: 0.3rem 0 0;
 }
 
 .exhibitMedium {
@@ -573,7 +578,7 @@
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(2rem, 6vw, 6rem);
-  padding: clamp(3.5rem, 7vw, 6rem) 0;
+  padding-block: clamp(3.5rem, 7vw, 6rem);
 }
 
 .labelLead {
@@ -644,7 +649,7 @@
 }
 
 .featureBlock {
-  padding: 0 0 clamp(4rem, 8vw, 6rem);
+  padding-bottom: clamp(4rem, 8vw, 6rem);
 }
 
 .prose {
@@ -931,6 +936,18 @@
 }
 
 @media (max-width: 520px) {
+  .noLabel {
+    display: none;
+  }
+  .hero {
+    min-height: 620px;
+  }
+  .heroImg {
+    object-position: 46% 30%;
+  }
+  .heroShade {
+    background: linear-gradient(to top, rgba(12, 11, 10, 0.98) 0%, rgba(12, 11, 10, 0.75) 45%, rgba(12, 11, 10, 0.2) 75%, rgba(12, 11, 10, 0.5) 100%);
+  }
   .exhibitLink {
     grid-template-columns: 2.5rem minmax(0, 1fr) 5.5rem;
     padding: 1.1rem 0;
@@ -951,4 +968,13 @@
   .exhibitTitle {
     transition: none;
   }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
