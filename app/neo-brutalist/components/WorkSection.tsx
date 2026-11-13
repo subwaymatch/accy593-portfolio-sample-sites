@@ -86,6 +86,7 @@ export default function WorkSection() {
                       width={item.image.width}
                       height={item.image.height}
                       loading="lazy"
+                      style={item.image.position ? { objectPosition: item.image.position } : undefined}
                     />
                   ) : (
                     <div className={styles.postThumb} aria-hidden="true">
@@ -131,7 +132,7 @@ export default function WorkSection() {
           <>
             <div className={`${styles.dialogHead} ${styles[`bg-${selected.color}`]}`}>
               <div>
-                <p style={{ fontWeight: 700, marginBottom: "0.3rem" }}>
+                <p className={styles.dialogMeta} style={{ fontWeight: 700, marginBottom: "0.3rem" }}>
                   {selected.category === "business" ? "Business" : "Creative"} · {selected.kind}
                 </p>
                 <h2 id="nb-dialog-title" className={styles.dialogTitle}>
@@ -144,7 +145,7 @@ export default function WorkSection() {
                 onClick={() => dialogRef.current?.close()}
                 autoFocus
               >
-                Close <span aria-hidden="true">✕</span>
+                <span className={styles.closeLabel}>Close</span> <span aria-hidden="true">✕</span>
               </button>
             </div>
             <div className={styles.dialogBody}>

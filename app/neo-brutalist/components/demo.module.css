@@ -249,20 +249,50 @@
   gap: 1rem;
 }
 
-.seqScroll {
-  overflow-x: auto;
-  padding-bottom: 0.4rem;
+.drumButtons {
+  display: flex;
+  gap: 0.75rem;
 }
 
 .seq {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.seqBar {
+  flex: 1 1 0;
   display: grid;
   gap: 0.4rem;
-  min-width: 560px;
+  min-width: 0;
+}
+
+/* Bar 1 carries the 56px label column (+ one 4px gap), so give it a 60px head start. */
+.seqBar:first-child {
+  flex-basis: 60px;
+}
+
+.seqBar + .seqBar .seqRow {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.seqBar + .seqBar .seqLabelRepeat {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.barLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .seqRow {
   display: grid;
-  grid-template-columns: 64px repeat(16, 1fr);
+  grid-template-columns: 56px repeat(8, 1fr);
   gap: 4px;
   align-items: center;
 }
@@ -283,7 +313,7 @@
 }
 
 .beat {
-  background: #eee6cf;
+  border-left-width: 5px;
 }
 
 .on-kick {
@@ -395,7 +425,7 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
   gap: 0.75rem;
 }
 
@@ -443,6 +473,21 @@
 }
 
 @media (max-width: 640px) {
+  .seq {
+    flex-direction: column;
+  }
+
+  .seqBar + .seqBar .seqRow {
+    grid-template-columns: 56px repeat(8, 1fr);
+  }
+
+  .seqBar + .seqBar .seqLabelRepeat {
+    position: static;
+    width: auto;
+    height: auto;
+    clip-path: none;
+  }
+
   .abGrid,
   .fieldGrid,
   .gallery {

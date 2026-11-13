@@ -134,10 +134,15 @@ export default function DrumLoop() {
   return (
     <div className={`${styles.panel} ${demo.drum}`}>
       <div className={demo.drumControls}>
-        <button type="button" className={`${styles.btn} ${playing ? styles.btnPink : ""}`} onClick={toggle}>
-          {playing ? "■ Stop" : "▶ Play loop"}
-        </button>
-        <label className={demo.field} style={{ flex: "1 1 200px" }}>
+        <div className={demo.drumButtons}>
+          <button type="button" className={`${styles.btn} ${playing ? styles.btnPink : ""}`} onClick={toggle}>
+            {playing ? "■ Stop" : "▶ Play loop"}
+          </button>
+          <button type="button" className={`${styles.btn} ${styles.btnWhite}`} onClick={() => setPattern(initial)}>
+            Reset
+          </button>
+        </div>
+        <label className={demo.field} style={{ flex: "1 1 220px" }}>
           <span>
             Tempo: <strong>{bpm} BPM</strong>
           </span>
@@ -150,18 +155,26 @@ export default function DrumLoop() {
             className={demo.range}
           />
         </label>
-        <button type="button" className={`${styles.btn} ${styles.btnWhite}`} onClick={() => setPattern(initial)}>
-          Reset pattern
-        </button>
       </div>
-      <div className={demo.seqScroll}>
-        <div className={demo.seq} role="grid" aria-label="Drum pattern, 16 steps">
-          {voices.map((v) => (
+      <div className={demo.seq}>
+        {[0, 8].map((start) => (
+          <div
+            key={start}
+            className={demo.seqBar}
+            role="grid"
+            aria-label={`Drum pattern, bar ${start / 8 + 1} (steps ${start + 1} to ${start + 8})`}
+          >
+            <p className={demo.barLabel} aria-hidden="true">
+              Bar {start / 8 + 1}
+            </p>
+            {voices.map((v) => (
             <div key={v.id} className={demo.seqRow} role="row">
-              <span className={demo.seqLabel} role="rowheader">
+              <span className={`${demo.seqLabel} ${start ? demo.seqLabelRepeat : ""}`} role="rowheader">
                 {v.label}
               </span>
-              {pattern[v.id].map((on, i) => (
+              {pattern[v.id].slice(start, start + 8).map((on, j) => {
+                const i = start + j;
+                return (
                 <span key={i} role="gridcell">
                   <button
                     type="button"
@@ -173,10 +186,12 @@ export default function DrumLoop() {
                     onClick={() => flip(v.id, i)}
                   />
                 </span>
-              ))}
+                );
+              })}
             </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ))}
       </div>
       <p className={demo.fine}>Sounds are synthesised live with the Web Audio API. Turn your volume down a bit first.</p>
     </div>

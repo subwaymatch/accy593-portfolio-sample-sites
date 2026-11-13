@@ -22,7 +22,7 @@ export type WorkItem = {
   summary: string;
   /** Paragraphs shown in the detail modal under "What I did". */
   body: string[];
-  image?: { src: string; alt: string; width: number; height: number };
+  image?: { src: string; alt: string; width: number; height: number; position?: string };
   color: "yellow" | "pink" | "blue" | "mint";
   demo: Demo;
 };
@@ -169,6 +169,7 @@ export const work: WorkItem[] = [
       alt: "Low-angle photo of a skateboarder mid-ollie over a parking lot curb at dusk",
       width: 1024,
       height: 1536,
+      position: "50% 42%",
     },
     color: "blue",
     demo: "skate",

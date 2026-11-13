@@ -33,7 +33,7 @@ export default function NeoBrutalistHome() {
             <div>
               <p className={styles.kicker}>MS Accountancy · Gies College of Business</p>
               <h1 className={styles.heroTitle}>
-                I make small-business numbers <span className={styles.highlight}>do marketing.</span>
+                I make <span className={styles.nowrapWide}>small-business</span> numbers <span className={styles.highlight}>do marketing.</span>
               </h1>
               <p className={styles.heroLede}>
                 I&rsquo;m Marcus Johnson. I study accountancy at the University of Illinois and spend most of my free
