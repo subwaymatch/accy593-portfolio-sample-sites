@@ -162,6 +162,19 @@
   background: rgba(255, 255, 255, 0.8);
 }
 
+.navLinks a[aria-current="location"] {
+  background: var(--lavender-soft);
+  color: var(--lavender-deep);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav,
+  .glass,
+  .chipFloat {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+
 /* Layout */
 .main {
   position: relative;

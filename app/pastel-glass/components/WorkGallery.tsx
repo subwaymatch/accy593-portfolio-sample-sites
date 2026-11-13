@@ -71,29 +71,69 @@ export default function WorkGallery() {
 
   const items = filter === "All" ? WORK : WORK.filter((w) => w.tags.includes(filter));
 
+  const show = useCallback((item: WorkItem) => {
+    setOpen(item);
+    // Shareable link to the open piece, without adding history entries.
+    window.history.replaceState(null, "", `#work/${item.id}`);
+  }, []);
+
   const openItem = (item: WorkItem, trigger: HTMLElement) => {
     lastTrigger.current = trigger;
-    setOpen(item);
+    show(item);
   };
 
   const close = useCallback(() => {
     dialogRef.current?.close();
   }, []);
 
+  // Open a piece straight from a link such as /pastel-glass#work/deduction-estimator
+  useEffect(() => {
+    const fromHash = () => {
+      const m = window.location.hash.match(/^#work\/([\w-]+)$/);
+      const item = m && WORK.find((w) => w.id === m[1]);
+      if (item) {
+        lastTrigger.current = document.querySelector<HTMLElement>(`[data-work-id="${item.id}"]`);
+        setOpen(item);
+      }
+    };
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+    return () => window.removeEventListener("hashchange", fromHash);
+  }, []);
+
   useEffect(() => {
     const dlg = dialogRef.current;
-    if (!dlg) return;
-    if (open && !dlg.open) {
+    if (!dlg || !open) return;
+    if (!dlg.open) {
       dlg.showModal();
-      dlg.scrollTop = 0;
       document.documentElement.style.overflow = "hidden";
     }
+    dlg.scrollTop = 0;
   }, [open]);
 
   const onDialogClose = () => {
     document.documentElement.style.overflow = "";
     setOpen(null);
+    window.history.replaceState(null, "", "#work");
     lastTrigger.current?.focus();
+  };
+
+  // Previous / next within the current filter, wrapping around.
+  const index = open ? items.findIndex((w) => w.id === open.id) : -1;
+  const step = (dir: 1 | -1) => {
+    if (index < 0 || items.length < 2) return;
+    const next = items[(index + dir + items.length) % items.length];
+    lastTrigger.current = document.querySelector<HTMLElement>(`[data-work-id="${next.id}"]`);
+    show(next);
+  };
+  const prevItem = index >= 0 ? items[(index - 1 + items.length) % items.length] : null;
+  const nextItem = index >= 0 ? items[(index + 1) % items.length] : null;
+
+  const onDialogKey = (e: React.KeyboardEvent) => {
+    const tag = (e.target as HTMLElement).tagName;
+    if (tag === "INPUT" || tag === "SELECT" || tag === "TEXTAREA") return;
+    if (e.key === "ArrowRight") step(1);
+    if (e.key === "ArrowLeft") step(-1);
   };
 
   return (
@@ -118,7 +158,13 @@ export default function WorkGallery() {
       <ul className={g.masonry}>
         {items.map((item, i) => (
           <li key={item.id} className={g.cell}>
-            <button type="button" className={g.card} onClick={(e) => openItem(item, e.currentTarget)} aria-haspopup="dialog">
+            <button
+              type="button"
+              className={g.card}
+              data-work-id={item.id}
+              onClick={(e) => openItem(item, e.currentTarget)}
+              aria-haspopup="dialog"
+            >
               <span className={`${g.media} ${g[item.tint]} ${item.image.transparent ? g.mediaIcon : ""}`}>
                 <img
                   src={item.image.src}
@@ -153,6 +199,7 @@ export default function WorkGallery() {
         className={g.dialog}
         aria-labelledby="pg-modal-title"
         onClose={onDialogClose}
+        onKeyDown={onDialogKey}
         onClick={(e) => {
           if (e.target === dialogRef.current) close();
         }}
@@ -210,6 +257,22 @@ export default function WorkGallery() {
                 </span>
               ))}
             </div>
+
+            {prevItem && nextItem && items.length > 1 && (
+              <nav className={g.pager} aria-label="More work">
+                <button type="button" className={g.pagerBtn} onClick={() => step(-1)}>
+                  <span className={g.pagerDir}>← Previous</span>
+                  <span className={g.pagerTitle}>{prevItem.title}</span>
+                </button>
+                <span className={g.pagerCount}>
+                  {index + 1} / {items.length}
+                </span>
+                <button type="button" className={`${g.pagerBtn} ${g.pagerNext}`} onClick={() => step(1)}>
+                  <span className={g.pagerDir}>Next →</span>
+                  <span className={g.pagerTitle}>{nextItem.title}</span>
+                </button>
+              </nav>
+            )}
           </div>
         )}
       </dialog>

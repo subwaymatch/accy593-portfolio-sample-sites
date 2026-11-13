@@ -300,6 +300,68 @@
   margin-bottom: 1.5rem;
 }
 
+.pager {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(106, 79, 184, 0.15);
+}
+
+.pagerBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pagerBtn:hover {
+  background: #fff;
+}
+
+.pagerNext {
+  text-align: right;
+}
+
+.pagerDir {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--lavender-deep);
+}
+
+.pagerTitle {
+  overflow: hidden;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pagerCount {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .card,
+  .chip {
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  .dialog {
+    background: #fbf8ff;
+  }
+}
+
 @media (max-width: 640px) {
   .dialog {
     width: calc(100vw - 1rem);
@@ -318,6 +380,23 @@
 
   .sheetIcon {
     width: 110px;
+  }
+
+  .chip {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .filters {
+    gap: 0.4rem;
+  }
+
+  .pager {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pagerCount {
+    display: none;
   }
 }
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import s from "./pastel.module.css";
 import WorkGallery from "./components/WorkGallery";
+import SiteNav from "./components/SiteNav";
 
 export const metadata: Metadata = {
   title: "Sofia Ramírez · Tax, nonprofits and financial literacy",
@@ -16,29 +17,7 @@ export default function PastelGlassPage() {
       <a href="#main" className={s.skip}>
         Skip to content
       </a>
-      <header className={s.navWrap}>
-        <nav className={s.nav} aria-label="Main">
-          <a href="#top" className={s.brand}>
-            <span className={s.monogram} aria-hidden="true">
-              SR
-            </span>
-            <span>
-              Sofia<span className={s.brandLast}> Ramírez</span>
-            </span>
-          </a>
-          <ul className={s.navLinks}>
-            <li>
-              <a href="#about">About</a>
-            </li>
-            <li>
-              <a href="#work">Work</a>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <SiteNav />
 
       <main id="main" className={s.main}>
         <section id="top" className={s.hero} aria-labelledby="hero-title">
