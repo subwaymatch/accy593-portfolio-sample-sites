@@ -13,16 +13,31 @@ export default function AboutPage() {
   const featured = items.filter((i) => i.kind === "business").slice(0, 3);
   return (
     <div className={s.aboutGrid}>
-      <figure className={s.portrait}>
-        <span className={`${s.tape} ${s.tape_sage}`} aria-hidden="true" />
-        <img
-          src="/scrapbook-craft/portrait.webp"
-          alt="Storybook-style illustrated portrait of Emma in a mustard cardigan holding a notebook in a garden"
-          width={1024}
-          height={1536}
-        />
-        <figcaption className={s.heroCaption}>me, drawn (not photographed)</figcaption>
-      </figure>
+      <div className={s.aboutSide}>
+        <figure className={s.portrait}>
+          <span className={`${s.tape} ${s.tape_sage}`} aria-hidden="true" />
+          <img
+            src="/scrapbook-craft/portrait.webp"
+            alt="Storybook-style illustrated portrait of Emma in a mustard cardigan holding a notebook in a garden"
+            width={1024}
+            height={1536}
+          />
+          <figcaption className={s.heroCaption}>me, drawn (not photographed)</figcaption>
+        </figure>
+        <section className={`${s.contactCard} ${s.glance}`} aria-label="At a glance">
+          <span className={`${s.tape} ${s.tape_mustard}`} aria-hidden="true" />
+          <dl className={s.ruled}>
+            <dt>studying</dt>
+            <dd>MS in Accountancy, Gies College of Business</dd>
+            <dt>this semester</dt>
+            <dd>ACCY 593</dd>
+            <dt>based in</dt>
+            <dd>Champaign-Urbana, Illinois</dd>
+            <dt>looking for</dt>
+            <dd>Sustainability assurance or advisory internship</dd>
+          </dl>
+        </section>
+      </div>
 
       <div>
         <p className={s.helloKicker}>about me</p>
@@ -31,7 +46,7 @@ export default function AboutPage() {
         <section className={s.paperBlock}>
           <h2>Who I am</h2>
           <p>
-            I&apos;m Emma, a {person.program} student at the {person.school}. I grew up helping at my aunt&apos;s
+            I&apos;m Emma, an {person.program} student at the {person.school}. I grew up helping at my aunt&apos;s
             orchard stand every fall, which is where I first noticed that the people running small food businesses
             are usually great at growing things and short on time for the books. That stuck with me.
           </p>
@@ -79,21 +94,22 @@ export default function AboutPage() {
 
         <section className={s.contactCard} aria-labelledby="contact-title">
           <span className={`${s.tape} ${s.tape_terracotta}`} aria-hidden="true" />
-          <h2 id="contact-title" className={s.cardTitle}>
-            Get in touch
-          </h2>
-          <p>
-            I&apos;m looking for internships in sustainability assurance and advisory. The fastest way to reach me
-            is email.
-          </p>
-          <p>
-            Email: <a href={`mailto:${person.email}`}>{person.email}</a>
-            <br />
-            LinkedIn:{" "}
-            <a href={person.linkedin} target="_blank" rel="noopener noreferrer">
-              linkedin.com
-            </a>
-          </p>
+          <div className={s.ruled}>
+            <h2 id="contact-title">Get in touch</h2>
+            <p>
+              I&apos;m looking for internships in sustainability assurance and advisory. Email is the fastest way to
+              reach me, and I usually reply within a day.
+            </p>
+            <p>
+              Email: <a href={`mailto:${person.email}`}>{person.email}</a>
+            </p>
+            <p>
+              LinkedIn:{" "}
+              <a href={person.linkedin} target="_blank" rel="noopener noreferrer">
+                linkedin.com
+              </a>
+            </p>
+          </div>
         </section>
       </div>
     </div>

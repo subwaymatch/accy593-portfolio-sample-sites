@@ -2,6 +2,17 @@ import s from "./chart.module.css";
 
 export type BarRow = { label: string; value: number; highlight?: boolean };
 
+/** A bar anchored square at the baseline with a rounded data end. */
+export function Bar({ pct, className }: { pct: number; className: string }) {
+  const w = Math.max(pct, 0.6);
+  return (
+    <svg className={s.track} aria-hidden="true">
+      <rect x="0" y="2" width={`${w}%`} height="14" rx="4" className={className} />
+      <rect x="0" y="2" width={`${w / 2}%`} height="14" className={className} />
+    </svg>
+  );
+}
+
 /**
  * Single-series horizontal bar chart drawn with inline SVG bars inside an HTML grid,
  * so labels stay at a readable size on phones. Includes a table view.
@@ -33,16 +44,7 @@ export default function BarChart({
           return (
             <li key={r.label} className={s.row} title={`${r.label}: ${format(r.value)} ${unit} (${share}% of total)`}>
               <span className={s.label}>{r.label}</span>
-              <svg className={s.track} viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
-                <rect
-                  x="0"
-                  y="0"
-                  width={Math.max(pct, 0.8)}
-                  height="10"
-                  rx="0"
-                  className={r.highlight ? s.barHighlight : s.bar}
-                />
-              </svg>
+              <Bar pct={pct} className={r.highlight ? s.barHighlight : s.bar} />
               <span className={s.value}>
                 {format(r.value)}
                 <span className={s.share}> · {share}%</span>

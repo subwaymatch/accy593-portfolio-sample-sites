@@ -175,6 +175,12 @@
   border: none;
 }
 
+@media (max-width: 440px) {
+  .brandSub {
+    display: none;
+  }
+}
+
 @media (max-width: 760px) {
   .menuButton {
     display: inline-flex;
@@ -250,6 +256,7 @@
 .sectionNote {
   font-family: var(--sb-hand), cursive;
   font-size: 1.45rem;
+  line-height: 1.2;
   color: var(--sage-dark);
   margin: 0 0 1.5rem;
 }
@@ -265,6 +272,7 @@
 
 .helloKicker {
   font-family: var(--sb-hand), cursive;
+  line-height: 1.2;
   font-size: 1.7rem;
   color: var(--terracotta-dark);
   margin: 0;
@@ -339,6 +347,7 @@
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 2.75rem 2rem;
   padding: 1rem 0.5rem;
+  align-items: start;
 }
 
 .pin {
@@ -363,7 +372,6 @@
   background: var(--paper);
   padding: 12px 12px 18px;
   box-shadow: var(--shadow);
-  height: 100%;
 }
 
 .polaroid img {
@@ -375,13 +383,25 @@
 
 .indexCard {
   background-color: var(--cream);
-  background-image:
-    linear-gradient(var(--cream) 0 34px, transparent 34px),
-    repeating-linear-gradient(transparent 0 27px, rgba(120, 150, 190, 0.35) 27px 28px);
   border-top: 4px solid var(--terracotta);
-  padding: 14px 16px 18px;
+  padding: 14px 16px 14px;
   box-shadow: var(--shadow);
-  height: 100%;
+}
+
+/* Ruled index-card paper: every line of text sits on a 28px rule. */
+.ruled {
+  --rule: rgba(110, 140, 180, 0.38);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 27px, var(--rule) 27px 28px);
+  line-height: 28px;
+}
+
+.ruled > * {
+  margin: 0 !important;
+  line-height: 28px !important;
+}
+
+.cardBody {
+  padding-top: 0.25rem;
 }
 
 .indexCard img {
@@ -389,7 +409,9 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  border: 6px solid var(--paper);
+  box-shadow: 0 1px 3px rgba(59, 44, 34, 0.25);
 }
 
 .cardCaption {
@@ -413,8 +435,13 @@
   margin: 0;
 }
 
+.tagLine {
+  margin: 0.6rem 0 0;
+}
+
 .tag {
   display: inline-block;
+  line-height: 1.5;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -422,14 +449,45 @@
   border-radius: 3px;
   background: var(--mustard-soft);
   color: var(--ink);
-  margin-top: 0.6rem;
+  vertical-align: middle;
 }
 
 .tagBusiness {
   background: #d7e2cc;
 }
 
+/* A sticky note that fills the spare slot in the business board. */
+.sticky {
+  position: relative;
+  align-self: center;
+  background: #f4dc8f;
+  padding: 1.5rem 1.4rem 1.25rem;
+  box-shadow: 0 10px 16px -10px rgba(59, 44, 34, 0.5);
+  transform: rotate(2.5deg);
+  font-family: var(--sb-hand), cursive;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  color: var(--ink);
+  max-width: 300px;
+  justify-self: center;
+}
+
+.sticky p {
+  margin: 0 0 0.6rem;
+}
+
+.root .sticky a {
+  color: var(--terracotta-dark);
+  font-weight: 700;
+}
+
 @media (max-width: 600px) {
+  .sticky {
+    transform: none;
+    max-width: none;
+    justify-self: stretch;
+  }
+
   .pin,
   .heroPhoto {
     transform: none;
@@ -480,18 +538,92 @@
   margin: 0 0 0.85rem;
 }
 
-.paperBlock ul {
-  margin: 0;
-  padding-left: 1.2rem;
+.paperBlock ul,
+.prose ul {
+  list-style: disc;
+  margin: 0 0 1rem;
+  padding-left: 1.3rem;
+}
+
+.prose ol {
+  list-style: decimal;
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+}
+
+.paperBlock li,
+.prose li {
+  margin-bottom: 0.45rem;
+}
+
+.paperBlock li::marker,
+.prose li::marker {
+  color: var(--terracotta);
+}
+
+.prose ol li::marker {
+  font-weight: 600;
+}
+
+.prose dt {
+  margin-top: 0.75rem;
+}
+
+.prose dd {
+  margin: 0.15rem 0 0 1.2rem;
 }
 
 .contactCard {
   background-color: var(--cream);
-  background-image: repeating-linear-gradient(transparent 0 27px, rgba(120, 150, 190, 0.35) 27px 28px);
   border-top: 4px solid var(--sage);
-  padding: 1.25rem 1.5rem;
+  padding: 1.6rem 1.5rem 1.1rem;
   box-shadow: var(--shadow);
   position: relative;
+}
+
+.contactCard h2 {
+  font-family: var(--sb-display), Georgia, serif;
+  font-size: 1.25rem;
+}
+
+.contactCard dt {
+  font-size: 1.3rem;
+  color: var(--terracotta-dark);
+}
+
+.contactCard dd {
+  margin: 0;
+}
+
+.contactCard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contactCard li::before {
+  content: "✓ ";
+  color: var(--sage-dark);
+  font-weight: 700;
+}
+
+.glance {
+  margin-top: 2.5rem;
+  transform: rotate(1deg);
+}
+
+.glance dt {
+  font-family: var(--sb-hand), cursive;
+  font-size: 1.3rem;
+  color: var(--terracotta-dark);
+}
+
+.glance dd {
+  margin: 0;
+}
+
+.aboutSide {
+  position: sticky;
+  top: 6rem;
 }
 
 @media (max-width: 820px) {
@@ -503,9 +635,23 @@
     max-width: 300px;
     margin: 0 auto;
   }
+
+  .aboutSide {
+    position: static;
+  }
+
+  .glance {
+    transform: none;
+    margin-top: 2rem;
+  }
 }
 
 /* ---------- Work detail ---------- */
+.detail {
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
 .crumbs {
   font-size: 0.95rem;
   margin-bottom: 1rem;
@@ -550,15 +696,41 @@
 
 .notes {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.6fr 1fr;
   gap: 2rem;
-  margin: 3rem 0;
+  margin: 3rem 0 2.5rem;
+  align-items: start;
+}
+
+.notes .paperBlock {
+  margin: 0;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+}
+
+.chips li {
+  font-size: 0.9rem;
+  background: var(--paper);
+  border: 1px solid var(--kraft-dark);
+  border-radius: 999px;
+  padding: 0.1rem 0.7rem;
+}
+
+.chips li::before {
+  content: none !important;
 }
 
 .body {
   position: relative;
   background: var(--paper);
-  padding: 2rem;
+  padding: 2.25rem 2.5rem;
   box-shadow: var(--shadow);
 }
 
@@ -579,7 +751,8 @@
 }
 
 .prose {
-  max-width: 44rem;
+  max-width: 46rem;
+  margin: 0 auto;
 }
 
 .prose p {
@@ -644,8 +817,28 @@
   flex-wrap: wrap;
 }
 
-.pager a {
+.root .pager a {
   max-width: 48%;
+  text-decoration: none;
+  background: var(--paper);
+  padding: 0.6rem 1rem;
+  box-shadow: var(--shadow);
+}
+
+.root .pager a:hover {
+  text-decoration: underline;
+}
+
+.pager small {
+  display: block;
+  font-family: var(--sb-hand), cursive;
+  font-size: 1.15rem;
+  color: var(--sage-dark);
+}
+
+.pagerNext {
+  text-align: right;
+  margin-left: auto;
 }
 
 @media (max-width: 820px) {
@@ -662,8 +855,9 @@
     padding: 1.25rem;
   }
 
-  .pager a {
-    max-width: 100%;
+  .root .pager a {
+    max-width: none;
+    flex: 1 1 100%;
   }
 }
 
@@ -690,6 +884,10 @@
   font: inherit;
 }
 
+.field input[type="range"] {
+  accent-color: var(--terracotta);
+}
+
 .field select {
   padding: 0.4rem;
   border: 2px solid var(--ink-soft);
@@ -702,6 +900,19 @@
   background: var(--cream);
   border: 2px dashed var(--sage-dark);
   padding: 1.25rem;
+  align-self: start;
+  position: sticky;
+  top: 6rem;
+}
+
+@media (max-width: 820px) {
+  .result {
+    position: static;
+  }
+}
+
+.calc + .prose {
+  margin-top: 2.5rem;
 }
 
 .bigNumber {
@@ -732,6 +943,7 @@
 
 .footerHand {
   font-family: var(--sb-hand), cursive;
+  line-height: 1.25;
   font-size: 1.4rem;
   color: var(--sage-dark);
 }

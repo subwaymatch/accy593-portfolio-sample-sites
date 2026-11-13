@@ -62,6 +62,12 @@ export default function ScrapbookHome() {
           {business.map((item) => (
             <PinCard key={item.slug} item={item} />
           ))}
+          <li className={s.sticky}>
+            <p>Most of these started as ACCY 593 assignments. The numbers are sample data; the methods are real.</p>
+            <p>
+              Short on time? <Link href="/scrapbook-craft/work/carbon-cost-per-meal">Try the calculator →</Link>
+            </p>
+          </li>
         </ul>
       </section>
 

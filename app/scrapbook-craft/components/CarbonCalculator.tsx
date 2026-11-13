@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import s from "../scrapbook.module.css";
+import { Bar } from "./BarChart";
 import c from "./chart.module.css";
 
 /** Rounded, illustrative factors in kg CO2e per kg of food (simplified). */
@@ -128,9 +129,7 @@ export default function CarbonCalculator() {
           {parts.map((p) => (
             <li key={p.label} className={c.row} title={`${p.label}: ${p.kg.toFixed(2)} kg CO2e`}>
               <span className={c.label}>{p.label}</span>
-              <svg className={c.track} viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
-                <rect x="0" y="0" width={Math.max((p.kg / max) * 100, 0.5)} height="10" className={c.bar} />
-              </svg>
+              <Bar pct={(p.kg / max) * 100} className={c.bar} />
               <span className={c.value}>{p.kg.toFixed(2)} kg</span>
             </li>
           ))}

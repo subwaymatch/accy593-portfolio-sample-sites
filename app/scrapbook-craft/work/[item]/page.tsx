@@ -25,7 +25,7 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
   const { prev, next } = neighbors(item.slug);
 
   return (
-    <article>
+    <article className={s.detail}>
       <nav className={s.crumbs} aria-label="Breadcrumb">
         <Link href="/scrapbook-craft">The board</Link> /{" "}
         {item.kind === "business" ? "Accounting & analytics" : "Made by hand"}
@@ -39,7 +39,6 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
             <span className={`${s.tag} ${item.kind === "business" ? s.tagBusiness : ""}`} style={{ marginTop: 0 }}>
               {item.tag}
             </span>
-            <span>{item.when}</span>
           </div>
           <p>{item.summary}</p>
         </div>
@@ -58,14 +57,21 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
             ))}
           </ul>
         </section>
-        <section className={s.contactCard}>
-          <h2 className={s.cardTitle}>Tools &amp; techniques</h2>
-          <ul>
+        <aside className={s.contactCard} aria-label="Project details">
+          <span className={`${s.tape} ${s.tape_sage}`} aria-hidden="true" />
+          <dl className={s.ruled}>
+            <dt className={s.hand}>type</dt>
+            <dd>{item.kind === "business" ? "Accounting & analytics" : "Made by hand"}</dd>
+            <dt className={s.hand}>when</dt>
+            <dd>{item.when}</dd>
+            <dt className={s.hand}>tools &amp; techniques</dt>
+          </dl>
+          <ul className={s.chips}>
             {item.tools.map((t) => (
               <li key={t}>{t}</li>
             ))}
           </ul>
-        </section>
+        </aside>
       </div>
 
       <section className={s.body} aria-label="The work">
@@ -73,8 +79,13 @@ export default async function WorkPage({ params }: { params: Promise<Params> }) 
       </section>
 
       <nav className={s.pager} aria-label="More work">
-        <Link href={`/scrapbook-craft/work/${prev.slug}`}>← {prev.title}</Link>
-        <Link href={`/scrapbook-craft/work/${next.slug}`}>{next.title} →</Link>
+        <Link href={`/scrapbook-craft/work/${prev.slug}`}>
+          <small>previous</small>← {prev.title}
+        </Link>
+        <Link href={`/scrapbook-craft/work/${next.slug}`} className={s.pagerNext}>
+          <small>next up</small>
+          {next.title} →
+        </Link>
       </nav>
     </article>
   );
