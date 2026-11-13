@@ -92,6 +92,51 @@ function EsgPost() {
         it was shorter. It was easier because it put each target in a small table, with the baseline year, the target
         year and the current figure in one row.
       </p>
+      <div className={s.tableWrap}>
+        <table className={s.table}>
+          <caption className={s.tableCaption}>What I counted in each climate section</caption>
+          <thead>
+            <tr>
+              <th scope="col">Report</th>
+              <th scope="col" className={s.num}>
+                Reading ease
+              </th>
+              <th scope="col" className={s.num}>
+                Words per sentence
+              </th>
+              <th scope="col" className={s.num}>
+                Undefined acronyms
+              </th>
+              <th scope="col" className={s.num}>
+                Claims with a number
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A</td>
+              <td className={s.num}>31</td>
+              <td className={s.num}>26</td>
+              <td className={s.num}>7</td>
+              <td className={s.num}>8 of 17</td>
+            </tr>
+            <tr>
+              <td>B</td>
+              <td className={s.num}>24</td>
+              <td className={s.num}>29</td>
+              <td className={s.num}>11</td>
+              <td className={s.num}>4 of 16</td>
+            </tr>
+            <tr>
+              <td>C</td>
+              <td className={s.num}>42</td>
+              <td className={s.num}>21</td>
+              <td className={s.num}>2</td>
+              <td className={s.num}>7 of 13</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <p>
         The part that bothered me most was the gap between claims and numbers. Across the three reports I counted 46
         sentences that made a performance or forward-looking claim, like &ldquo;we made meaningful progress on

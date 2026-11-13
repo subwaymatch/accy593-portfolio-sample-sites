@@ -873,7 +873,7 @@
 .detailPhoto {
   position: relative;
   background: var(--paper);
-  padding: 12px 12px 40px;
+  padding: 12px 12px 30px;
   box-shadow: var(--shadow);
   transform: rotate(1.5deg);
 }
@@ -927,6 +927,7 @@
 .body h2 {
   font-family: var(--sb-display), Georgia, serif;
   font-size: 1.5rem;
+  line-height: 1.25;
   margin: 1.5rem 0 0.5rem;
 }
 
@@ -935,6 +936,7 @@
 }
 
 .body h3 {
+  line-height: 1.3;
   font-family: var(--sb-display), Georgia, serif;
   font-size: 1.15rem;
   margin: 1.25rem 0 0.4rem;
@@ -977,6 +979,33 @@
 
 .table th {
   background: #f3e8d3;
+}
+
+.table td:first-child {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .table {
+    font-size: 0.82rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.4rem 0.3rem;
+  }
+
+  .table td:first-child {
+    white-space: normal;
+  }
+}
+
+.tableCaption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding-bottom: 0.4rem;
 }
 
 .table td.num,
