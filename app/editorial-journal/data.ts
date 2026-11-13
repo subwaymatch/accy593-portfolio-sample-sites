@@ -51,7 +51,7 @@ export const issue = {
   date: "November 2026",
 };
 
-export const items: Item[] = [
+const rawItems: Item[] = [
   {
     slug: "shell-vendor",
     desk: "business",
@@ -410,6 +410,28 @@ export const items: Item[] = [
     ],
   },
 ];
+
+// Typographer's quotes: turn straight quotes and apostrophes into curly ones
+// for every piece of display text (image paths and slugs are left alone).
+export function smart(text: string) {
+  return text
+    .replace(/(^|[\s(\[—-])"/g, "$1“")
+    .replace(/"/g, "”")
+    .replace(/'/g, "’");
+}
+
+function smartDeep<T>(value: T, key = ""): T {
+  if (typeof value === "string") {
+    return (key === "src" || key === "slug" ? value : smart(value)) as T;
+  }
+  if (Array.isArray(value)) return value.map((v) => smartDeep(v)) as T;
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, smartDeep(v, k)])) as T;
+  }
+  return value;
+}
+
+export const items: Item[] = rawItems.map((it) => smartDeep(it));
 
 export const businessItems = items.filter((i) => i.desk === "business");
 export const personalItems = items.filter((i) => i.desk === "personal");

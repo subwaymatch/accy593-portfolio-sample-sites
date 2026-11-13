@@ -32,6 +32,46 @@
   height: auto;
 }
 
+.root a:focus-visible,
+.root button:focus-visible,
+.root select:focus-visible,
+.root summary:focus-visible {
+  outline: 2px solid var(--ox);
+  outline-offset: 3px;
+}
+
+.root ::selection {
+  background: #e9c9c2;
+  color: var(--ink);
+}
+
+.contactStrip {
+  list-style: none;
+  padding: 0.6rem 0 0;
+  margin: 1rem auto 0;
+  max-width: 680px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 0;
+  border-top: 1px solid var(--hair);
+  font-size: 0.95rem;
+}
+.contactStrip li + li::before {
+  content: "\00B7";
+  margin: 0 0.75rem;
+  color: var(--muted);
+}
+.contactStrip a {
+  color: var(--ox);
+  font-weight: 600;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.contactStrip a:hover {
+  text-decoration: underline;
+}
+
 .skip {
   position: absolute;
   left: -9999px;
@@ -1346,6 +1386,16 @@
   }
   .articleHead {
     text-align: left;
+  }
+  .contactStrip {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .contactStrip li::before,
+  .contactStrip li + li::before {
+    content: "\2192";
+    margin: 0 0.5rem 0 0;
+    color: var(--ox);
   }
   .articleDek,
   .leadDek {

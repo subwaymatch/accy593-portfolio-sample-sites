@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { businessItems, person } from "../data";
+import { businessItems, person, smart } from "../data";
 import s from "../journal.module.css";
 
 export const metadata: Metadata = {
@@ -42,6 +42,19 @@ export default function AboutPage() {
           {person.name} is studying for an {person.program} at the University of Illinois. She is interested in
           forensic accounting, fraud examination, and explaining both to people who would rather not read a 10-K.
         </p>
+        <ul className={s.contactStrip} aria-label="Contact">
+          <li>
+            <a href={`mailto:${person.email}`}>{person.email}</a>
+          </li>
+          <li>
+            <a href={person.linkedin} target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href="#contact">Open to forensic &amp; audit roles</a>
+          </li>
+        </ul>
       </header>
 
       <div className={s.profileGrid}>
@@ -82,8 +95,8 @@ export default function AboutPage() {
             <dl className={s.qa}>
               {qa.map((x) => (
                 <div key={x.q}>
-                  <dt>{x.q}</dt>
-                  <dd>{x.a}</dd>
+                  <dt>{smart(x.q)}</dt>
+                  <dd>{smart(x.a)}</dd>
                 </div>
               ))}
             </dl>
