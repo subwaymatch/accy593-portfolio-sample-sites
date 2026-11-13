@@ -183,7 +183,7 @@ export const WORK: WorkTile[] = [
       "A working calculator: payment, total interest, a yearly schedule, and what an extra monthly payment actually saves.",
     teaser: (
       <span className={styles.loanTeaser} aria-hidden="true">
-        <span className={styles.loanFigure}>$1,477.73</span>
+        <span className={styles.loanFigure}>$1,477.72</span>
         <span className={styles.loanSub}>per month · $240k · 6.25% · 30y</span>
         <span className={styles.loanBars}>
           {[92, 88, 84, 79, 73, 66, 58, 49, 38, 26].map((h, i) => (

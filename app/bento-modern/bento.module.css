@@ -17,6 +17,7 @@
   --coral: #e5583f;
   --coral-soft: rgba(229, 88, 63, 0.12);
   --green: #16865a;
+  --on-color: #ffffff;
   --amber: #b26a00;
   --shadow: 0 1px 2px rgba(20, 20, 50, 0.04), 0 8px 24px -12px rgba(20, 20, 50, 0.12);
   --shadow-hover: 0 2px 4px rgba(20, 20, 50, 0.05), 0 18px 40px -16px rgba(40, 34, 140, 0.28);
@@ -53,6 +54,7 @@
   --coral: #ff8a73;
   --coral-soft: rgba(255, 138, 115, 0.14);
   --green: #4cd39a;
+  --on-color: #12131c;
   --amber: #f3b54a;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px -14px rgba(0, 0, 0, 0.6);
   --shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.3), 0 22px 44px -16px rgba(80, 70, 255, 0.35);
@@ -78,6 +80,7 @@
     --coral: #ff8a73;
     --coral-soft: rgba(255, 138, 115, 0.14);
     --green: #4cd39a;
+  --on-color: #12131c;
     --amber: #f3b54a;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px -14px rgba(0, 0, 0, 0.6);
     --shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.3), 0 22px 44px -16px rgba(80, 70, 255, 0.35);
@@ -102,15 +105,26 @@
 }
 
 .topbar {
+  position: sticky;
+  top: 12px;
+  z-index: 20;
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 10px 10px 10px 14px;
   margin-bottom: 20px;
-  background: var(--tile);
+  background: color-mix(in srgb, var(--tile) 82%, transparent);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
   border: 1px solid var(--border);
   border-radius: 999px;
   box-shadow: var(--shadow);
+}
+
+.bento,
+.workSection,
+.contact {
+  scroll-margin-top: 96px;
 }
 
 .brand {
@@ -261,6 +275,41 @@
   margin: 0;
   font-size: 17px;
   color: var(--muted);
+}
+
+.edu {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.edu > div {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--tile-2);
+  border: 1px solid var(--border);
+}
+
+.edu dt {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.edu dd {
+  margin: 2px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.root .eduWhen {
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .interestList {
@@ -484,7 +533,7 @@
 
 .root .primaryBtn {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-color);
 }
 
 .secondaryBtn {
@@ -495,7 +544,6 @@
 /* ---------- Work ---------- */
 .workSection {
   margin-top: 56px;
-  scroll-margin-top: 16px;
 }
 
 .sectionHead {
@@ -592,7 +640,23 @@
     font-size: 16px;
   }
 
+  .featured {
+    padding: 0;
+  }
+
   .featuredImg {
     height: 200px;
+  }
+
+  .featuredText {
+    padding: 16px 20px 20px;
+  }
+
+  .edu {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .topbar {
+    top: 8px;
   }
 }

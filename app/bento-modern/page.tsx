@@ -61,6 +61,18 @@ export default function BentoModernPage() {
               to what, how audit evidence gets collected, and where a small internal tool can save a team a week of
               tick-and-tie.
             </p>
+            <dl className={styles.edu}>
+              <div>
+                <dt>Now</dt>
+                <dd>MS in Accountancy, Gies College of Business, UIUC</dd>
+                <dd className={styles.eduWhen}>Expected May 2027</dd>
+              </div>
+              <div>
+                <dt>Before</dt>
+                <dd>BS in Information Systems</dd>
+                <dd className={styles.eduWhen}>Treasurer, student hiking club</dd>
+              </div>
+            </dl>
             <ul className={styles.interestList} aria-label="Interests">
               <li>Accounting information systems</li>
               <li>AI in audit</li>

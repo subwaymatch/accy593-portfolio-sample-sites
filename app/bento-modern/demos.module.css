@@ -109,7 +109,7 @@
   font: inherit;
   font-weight: 800;
   cursor: pointer;
-  color: #fff;
+  color: var(--on-color);
 }
 
 .cell[data-risk="high"] {
@@ -131,6 +131,24 @@
 .cell[aria-pressed="true"] {
   outline: 3px solid var(--text);
   outline-offset: 1px;
+}
+
+.legendCol {
+  display: grid;
+  gap: 14px;
+}
+
+.riskKey {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.riskKeyNote {
+  font-size: 12px;
+  color: var(--faint);
 }
 
 .legend {
@@ -236,7 +254,7 @@
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--on-color);
 }
 
 .risk[data-risk="high"] {

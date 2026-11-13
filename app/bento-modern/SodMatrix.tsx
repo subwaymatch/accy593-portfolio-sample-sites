@@ -184,14 +184,28 @@ export default function SodMatrix() {
             ))}
           </tbody>
         </table>
-        <dl className={styles.legend}>
-          {FUNCTIONS.map((f) => (
-            <div key={f.code}>
-              <dt>{f.code}</dt>
-              <dd>{f.name}</dd>
-            </div>
-          ))}
-        </dl>
+        <div className={styles.legendCol}>
+          <p className={styles.riskKey}>
+            <span className={styles.risk} data-risk="high">
+              high
+            </span>
+            <span className={styles.risk} data-risk="medium">
+              medium
+            </span>
+            <span className={styles.risk} data-risk="low">
+              low
+            </span>
+            <span className={styles.riskKeyNote}>Faded cells: no one in this view holds the pair.</span>
+          </p>
+          <dl className={styles.legend}>
+            {FUNCTIONS.map((f) => (
+              <div key={f.code}>
+                <dt>{f.code}</dt>
+                <dd>{f.name}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </div>
 
       <p className={styles.summary} aria-live="polite">

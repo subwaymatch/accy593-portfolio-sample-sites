@@ -18,9 +18,19 @@ export type WorkTile = {
 
 const HASH_PREFIX = "#work/";
 
+type Filter = "all" | "business" | "personal";
+const FILTERS: { id: Filter; label: string }[] = [
+  { id: "all", label: "All" },
+  { id: "business", label: "Business & analytics" },
+  { id: "personal", label: "Personal" },
+];
+
 export default function WorkGallery({ items }: { items: WorkTile[] }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const articleRef = useRef<HTMLElement>(null);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [filter, setFilter] = useState<Filter>("all");
+  const shown = filter === "all" ? items : items.filter((i) => i.kind === filter);
   const active = items.find((i) => i.id === activeId) ?? null;
 
   const open = useCallback(
@@ -53,6 +63,9 @@ export default function WorkGallery({ items }: { items: WorkTile[] }) {
     if (!active && d.open) d.close();
     if (active) {
       d.scrollTop = 0;
+      // Land focus on the article itself so screen readers start at the title
+      // and the close button doesn't show a focus ring for mouse users.
+      articleRef.current?.focus({ preventScroll: true });
       const prev = document.documentElement.style.overflow;
       document.documentElement.style.overflow = "hidden";
       return () => {
@@ -70,8 +83,25 @@ export default function WorkGallery({ items }: { items: WorkTile[] }) {
 
   return (
     <>
+      <div className={styles.filters} role="group" aria-label="Filter projects">
+        {FILTERS.map((f) => {
+          const count = f.id === "all" ? items.length : items.filter((i) => i.kind === f.id).length;
+          return (
+            <button
+              key={f.id}
+              type="button"
+              className={styles.filterBtn}
+              aria-pressed={filter === f.id}
+              onClick={() => setFilter(f.id)}
+            >
+              {f.label}
+              <span className={styles.filterCount}>{count}</span>
+            </button>
+          );
+        })}
+      </div>
       <ul className={styles.grid}>
-        {items.map((item) => (
+        {shown.map((item) => (
           <li key={item.id} className={styles.cell} data-size={item.size}>
             <button
               type="button"
@@ -107,7 +137,7 @@ export default function WorkGallery({ items }: { items: WorkTile[] }) {
         }}
       >
         {active ? (
-          <article className={styles.detail}>
+          <article className={styles.detail} ref={articleRef} tabIndex={-1}>
             <header className={styles.detailHead}>
               <div>
                 <p className={styles.tag}>{active.tag}</p>
