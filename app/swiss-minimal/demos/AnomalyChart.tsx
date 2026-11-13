@@ -63,7 +63,7 @@ const hh = (h: number) => {
 };
 
 function Scatter({ w, h, compact }: { w: number; h: number; compact?: boolean }) {
-  const m = { t: 20, r: compact ? 12 : 24, b: 44, l: compact ? 44 : 64 };
+  const m = { t: 20, r: compact ? 22 : 24, b: 44, l: compact ? 44 : 64 };
   const iw = w - m.l - m.r;
   const ih = h - m.t - m.b;
   const x = (hour: number) => m.l + (hour / 24) * iw;
@@ -128,10 +128,10 @@ function Scatter({ w, h, compact }: { w: number; h: number; compact?: boolean })
   );
 }
 
-function BenfordChart() {
-  const w = 560;
-  const h = 260;
-  const m = { t: 16, r: 12, b: 40, l: 40 };
+function BenfordChart({ compact }: { compact?: boolean }) {
+  const w = compact ? 360 : 560;
+  const h = compact ? 240 : 260;
+  const m = { t: 16, r: 8, b: 40, l: 36 };
   const iw = w - m.l - m.r;
   const ih = h - m.t - m.b;
   const band = iw / 9;
@@ -161,7 +161,7 @@ function BenfordChart() {
             </text>
             {over && (
               <text x={cx + bw / 2 + 10} y={y(b.observed) + 4} fontSize={13} fill="#000" fontWeight={600}>
-                21.4% vs 17.6%
+                {compact ? "21.4%" : "21.4% vs 17.6%"}
               </text>
             )}
           </g>
@@ -240,7 +240,12 @@ export default function AnomalyChart() {
               <i className={d.keyTick} /> Benford expected
             </span>
           </div>
-          <BenfordChart />
+          <div className={d.chartWide}>
+            <BenfordChart />
+          </div>
+          <div className={d.chartNarrow}>
+            <BenfordChart compact />
+          </div>
           <p className={d.note}>
             The excess at digit 2 is consistent with many entries landing in the $20,000 to $24,999 range.
           </p>

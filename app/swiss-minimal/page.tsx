@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import WorkRow from "./WorkRow";
-import { featuredSlugs, getItem, items, person } from "./data";
+import { featuredSlugs, items, person } from "./data";
 import s from "./site.module.css";
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function SwissHome() {
-  const featured = featuredSlugs.map((slug) => getItem(slug)!).filter(Boolean);
+  const featured = items.filter((i) => featuredSlugs.includes(i.slug));
   const businessCount = items.filter((i) => i.track === "Business").length;
 
   return (
@@ -19,7 +19,10 @@ export default function SwissHome() {
       <section className={`${s.wrap} ${s.hero}`}>
         <div className={s.grid}>
           <h1 className={`${s.display} ${s.heroName}`}>
-            Maya Chen<span className={s.red}>.</span>
+            <span className={s.displayLine}>Maya</span>
+            <span className={s.displayLine}>
+              Chen<span className={s.red}>.</span>
+            </span>
           </h1>
           <div className={s.heroMeta}>
             <p className={s.eyebrow}>{person.program}</p>
@@ -36,6 +39,17 @@ export default function SwissHome() {
               shoot film, throw pots and ride the county grid.
             </p>
           </div>
+          <nav className={s.heroIndex} aria-label="Work index">
+            <p className={s.eyebrow}>Index</p>
+            <ol>
+              {items.map((item, n) => (
+                <li key={item.slug}>
+                  <span className={item.track === "Business" ? s.red : undefined}>{String(n + 1).padStart(2, "0")}</span>
+                  <Link href={`/swiss-minimal/work/${item.slug}`}>{item.title}</Link>
+                </li>
+              ))}
+            </ol>
+          </nav>
           <div className={s.heroImage}>
             <img
               className={s.img}
@@ -48,7 +62,7 @@ export default function SwissHome() {
         </div>
       </section>
 
-      <section className={`${s.wrap} ${s.section}`} style={{ paddingTop: 0 }}>
+      <section className={`${s.wrap} ${s.section} ${s.sectionTight}`}>
         <div className={`${s.sectionHead} ${s.ruleTop}`}>
           <p className={s.eyebrow}>Selected work</p>
           <h2 className={s.h2}>
@@ -67,7 +81,7 @@ export default function SwissHome() {
         </p>
       </section>
 
-      <section className={`${s.wrap} ${s.section}`} style={{ paddingTop: 0 }}>
+      <section className={`${s.wrap} ${s.section} ${s.sectionTight}`}>
         <div className={`${s.sectionHead} ${s.ruleTop}`}>
           <p className={s.eyebrow}>Contact</p>
           <div>

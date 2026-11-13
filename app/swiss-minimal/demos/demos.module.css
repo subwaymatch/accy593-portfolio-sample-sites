@@ -492,3 +492,16 @@
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+.showNarrow {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .hideNarrow {
+    display: none;
+  }
+  .showNarrow {
+    display: inline;
+  }
+}

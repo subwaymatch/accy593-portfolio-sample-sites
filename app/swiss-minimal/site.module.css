@@ -190,10 +190,14 @@
 .display {
   font-family: var(--sm-display), sans-serif;
   font-weight: 700;
-  font-size: clamp(56px, 11vw, 168px);
-  line-height: 0.9;
-  letter-spacing: -0.045em;
-  margin: 0;
+  font-size: clamp(84px, 17vw, 248px);
+  line-height: 0.84;
+  letter-spacing: -0.055em;
+  margin: 0 0 0 -0.04em;
+}
+
+.displayLine {
+  display: block;
 }
 
 .h1 {
@@ -241,7 +245,12 @@
 
 /* ---------- sections ---------- */
 .section {
-  padding: clamp(48px, 7vw, 112px) 0;
+  padding-top: clamp(48px, 7vw, 112px);
+  padding-bottom: clamp(48px, 7vw, 112px);
+}
+
+.sectionTight {
+  padding-top: 0;
 }
 
 .ruleTop {
@@ -291,8 +300,49 @@
 }
 
 .heroImage {
-  grid-column: 1 / -1;
+  grid-column: 4 / -1;
   margin-top: clamp(40px, 5vw, 72px);
+}
+
+.heroImage img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.heroIndex {
+  grid-column: 1 / span 3;
+  margin-top: clamp(40px, 5vw, 72px);
+  align-self: end;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.heroIndex ol {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.heroIndex li {
+  border-bottom: 1px solid var(--hair);
+  padding: 6px 0;
+  display: flex;
+  gap: 12px;
+}
+
+.heroIndex li a {
+  text-decoration: none;
+}
+
+.heroIndex li a:hover {
+  color: var(--red);
+}
+
+.heroIndex li span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  min-width: 20px;
 }
 
 .img {
@@ -405,6 +455,10 @@
   cursor: pointer;
 }
 
+.filterBtn:hover {
+  border-color: var(--red);
+}
+
 .filterBtn[aria-pressed="true"] {
   background: var(--ink);
   color: #fff;
@@ -471,7 +525,16 @@
 }
 
 .detailImage {
-  grid-column: 1 / -1;
+  grid-column: 4 / -1;
+  margin: clamp(40px, 5vw, 72px) 0 0;
+}
+
+.detailImage img {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.demoTop {
   margin-top: clamp(40px, 5vw, 72px);
 }
 
@@ -696,6 +759,15 @@
   .footerCol {
     grid-column: span 6;
   }
+  .heroImage {
+    grid-column: 1 / -1;
+  }
+  .heroIndex {
+    display: none;
+  }
+  .detailImage {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 640px) {
@@ -735,7 +807,25 @@
     margin-top: 32px;
   }
   .fact {
-    grid-column: 1 / -1;
+    grid-column: span 6;
+  }
+  .pager {
+    grid-template-columns: 1fr;
+  }
+  .pagerNext {
+    text-align: left;
+    border-top: 1px solid var(--hair);
+    padding-top: 16px;
+  }
+  .filters {
+    gap: 6px;
+  }
+  .filterBtn {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  .heroImage img {
+    aspect-ratio: 4 / 3;
   }
   .footerName,
   .footerCol {

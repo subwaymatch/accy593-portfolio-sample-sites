@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import s from "./site.module.css";
 
 const links = [
-  { href: "/swiss-minimal", label: "Index", n: "A" },
-  { href: "/swiss-minimal/work", label: "Work", n: "B" },
-  { href: "/swiss-minimal/about", label: "About", n: "C" },
+  { href: "/swiss-minimal", label: "Index" },
+  { href: "/swiss-minimal/work", label: "Work" },
+  { href: "/swiss-minimal/about", label: "About" },
 ];
 
 export default function SiteNav() {

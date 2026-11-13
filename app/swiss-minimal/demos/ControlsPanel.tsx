@@ -31,9 +31,7 @@ export default function ControlsPanel() {
           <div className={d.kpiLabel}>Tests overdue</div>
         </div>
         <div className={d.kpi}>
-          <div className={d.kpiValue}>
-            0<span style={{ fontSize: "0.5em" }}> MW</span>
-          </div>
+          <div className={d.kpiValue}>0</div>
           <div className={d.kpiLabel}>Material weaknesses</div>
         </div>
       </div>
@@ -42,7 +40,9 @@ export default function ControlsPanel() {
           <thead>
             <tr>
               <th scope="col">Control</th>
-              <th scope="col">Owner</th>
+              <th scope="col" className={d.hideNarrow}>
+                Owner
+              </th>
               <th scope="col">Status</th>
               <th scope="col" className={d.num}>
                 Days late
@@ -55,9 +55,12 @@ export default function ControlsPanel() {
                 <td>
                   <strong>{c.id}</strong> {c.name}
                   <br />
-                  <span style={{ color: "#555", fontSize: 13 }}>{c.coso}</span>
+                  <span style={{ color: "#555", fontSize: 13 }}>
+                    {c.coso}
+                    <span className={d.showNarrow}> · Owner: {c.owner}</span>
+                  </span>
                 </td>
-                <td>{c.owner}</td>
+                <td className={d.hideNarrow}>{c.owner}</td>
                 <td>
                   <span className={`${d.status} ${cls[c.status as keyof typeof cls]}`}>{label[c.status as keyof typeof label]}</span>
                 </td>
