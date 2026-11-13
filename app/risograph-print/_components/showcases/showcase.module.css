@@ -144,6 +144,16 @@
   fill: var(--muted);
 }
 
+.calcAxis {
+  font: 16px var(--riso-mono), monospace;
+  fill: var(--ink);
+}
+
+.calcAxisDim {
+  font: 15px var(--riso-mono), monospace;
+  fill: var(--muted);
+}
+
 .axisMonth {
   font: 700 12px var(--riso-mono), monospace;
   fill: var(--blue);
@@ -773,7 +783,7 @@ ol.memoList {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.78rem;
-  margin: 0 0 2px;
+  margin: 0 0 10px;
   color: var(--teal);
 }
 
@@ -781,6 +791,9 @@ ol.memoList {
   margin: 0;
   line-height: 2.7;
   font-size: 1.05rem;
+  /* hanging indent: a wrapped line reads as a continuation, not a new lyric */
+  padding-left: 1.4em;
+  text-indent: -1.4em;
 }
 
 .seg {
@@ -792,6 +805,7 @@ ol.memoList {
   left: 0;
   top: -1.25em;
   line-height: 1;
+  text-indent: 0;
   font-family: var(--riso-mono), monospace;
   font-weight: 700;
   font-size: 0.9rem;
@@ -1093,5 +1107,10 @@ ol.memoList {
 
   .chordRow {
     grid-template-columns: repeat(5, 1fr);
+  }
+
+  .lyricLine {
+    font-size: 1rem;
+    line-height: 2.45;
   }
 }

@@ -74,7 +74,7 @@ export default function BreakEvenCalculator() {
   // profit line across 0..capacity
   const W = 520;
   const H = 220;
-  const pad = { l: 16, r: 16, t: 18, b: 30 };
+  const pad = { l: 16, r: 16, t: 18, b: 34 };
   const maxP = Math.max(Math.abs(-fixedTotal), Math.abs(v.capacity * margin - fixedTotal), 1);
   const x = (n: number) => pad.l + ((W - pad.l - pad.r) * n) / Math.max(1, v.capacity);
   const y = (p: number) => pad.t + ((H - pad.t - pad.b) * (maxP - p)) / (2 * maxP);
@@ -183,13 +183,13 @@ export default function BreakEvenCalculator() {
           {turnout > 0 && (
             <circle cx={x(turnout)} cy={y(profit)} r={6} fill="#00877d" stroke="#1b2250" strokeWidth={2} />
           )}
-          <text x={pad.l} y={H - 8} className={s.axis}>
+          <text x={pad.l} y={H - 8} className={s.calcAxis}>
             0 guests
           </text>
-          <text x={W - pad.r} y={H - 8} textAnchor="end" className={s.axis}>
+          <text x={W - pad.r} y={H - 8} textAnchor="end" className={s.calcAxis}>
             {v.capacity} (full room)
           </text>
-          <text x={W - pad.r} y={y(0) - 8} textAnchor="end" className={s.axisDim}>
+          <text x={W - pad.r} y={y(0) - 8} textAnchor="end" className={s.calcAxisDim}>
             profit = 0
           </text>
         </svg>
