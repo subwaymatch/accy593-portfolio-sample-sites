@@ -220,6 +220,37 @@ function HomeSales() {
         or new university staff who have never bought a house. The goal was to answer three questions quickly: what
         neighborhoods fit my budget, what will closing actually cost, and how do I compare two houses fairly.
       </p>
+      <div className={s.browser} role="img" aria-label="Sketch of the prototype home page: a navigation bar, a headline about buying a first home in Champaign-Urbana, and three cards for budget, closing costs and comparing houses">
+        <div className={s.browserBar}>
+          <i />
+          <i />
+          <i />
+          <span>first-home-cu / home (class prototype)</span>
+        </div>
+        <div className={s.mockNav}>
+          <b>First Home C-U</b>
+          <span>Neighborhoods</span>
+          <span>Closing costs</span>
+          <span>Compare</span>
+          <span>About</span>
+        </div>
+        <div className={s.mockHero}>
+          <strong>Buying your first home in Champaign-Urbana?</strong>
+          <small>Three questions to answer before you call an agent.</small>
+        </div>
+        <div className={s.mockCards}>
+          <div>
+            What fits my budget?<em>Neighborhood pages</em>
+          </div>
+          <div>
+            What will closing cost?<em>Plain-language glossary</em>
+          </div>
+          <div>
+            How do I compare houses?<em>Price per sq ft table</em>
+          </div>
+        </div>
+      </div>
+      <p className={s.mockCaption}>The home page after usability testing: four sections cut down from six.</p>
       <h3>Site map</h3>
       <ul>
         <li>Home: a short welcome, the three questions, and links to each section</li>
@@ -280,28 +311,28 @@ function HomeSales() {
         expensive&rdquo; until they saw it this way.
       </p>
       <h3>From the closing-cost glossary</h3>
-      <dl>
-        <dt>
-          <strong>Earnest money</strong>
-        </dt>
-        <dd>
-          A deposit you put down when your offer is accepted, to show you are serious. It usually counts toward your
-          down payment at closing.
-        </dd>
-        <dt>
-          <strong>Prorated property taxes</strong>
-        </dt>
-        <dd>
-          Illinois property taxes are paid a year behind, so the seller usually credits you for the months they lived
-          in the house but have not paid for yet.
-        </dd>
-        <dt>
-          <strong>Title insurance</strong>
-        </dt>
-        <dd>
-          A one-time policy that protects you (and your lender) if someone later turns out to have a claim on the
-          property.
-        </dd>
+      <dl className={s.glossary}>
+        <div>
+          <dt>Earnest money</dt>
+          <dd>
+            A deposit you put down when your offer is accepted, to show you are serious. It usually counts toward your
+            down payment at closing.
+          </dd>
+        </div>
+        <div>
+          <dt>Prorated property taxes</dt>
+          <dd>
+            Illinois property taxes are paid a year behind, so the seller usually credits you for the months they lived
+            in the house but have not paid for yet.
+          </dd>
+        </div>
+        <div>
+          <dt>Title insurance</dt>
+          <dd>
+            A one-time policy that protects you (and your lender) if someone later turns out to have a claim on the
+            property.
+          </dd>
+        </div>
       </dl>
       <p>
         The prototype was built for class review and is not published online, so this page shows the content and

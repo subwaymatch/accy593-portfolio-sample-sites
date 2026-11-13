@@ -40,6 +40,17 @@ export default function ScrapbookHome() {
               About me
             </Link>
           </div>
+          <ul className={s.jump} aria-label="Jump to a section">
+            <li>
+              <a href="#biz-title">Accounting &amp; analytics</a>
+            </li>
+            <li>
+              <a href="#made-title">Made by hand</a>
+            </li>
+            <li>
+              <Link href="/scrapbook-craft/work/carbon-cost-per-meal">The calculator</Link>
+            </li>
+          </ul>
         </div>
         <figure className={s.heroPhoto}>
           <span className={`${s.tape} ${s.tape_mustard}`} aria-hidden="true" />

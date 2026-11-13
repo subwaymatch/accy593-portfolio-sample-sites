@@ -110,6 +110,19 @@ export default function AboutPage() {
               </a>
             </p>
           </div>
+          <div className={s.contactActions}>
+            <a href={`mailto:${person.email}`} className={s.button}>
+              Email me
+            </a>
+            <a
+              href={person.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${s.button} ${s.buttonGhost}`}
+            >
+              LinkedIn
+            </a>
+          </div>
         </section>
       </div>
     </div>

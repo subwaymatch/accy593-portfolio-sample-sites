@@ -63,6 +63,11 @@ export default function CarbonCalculator() {
   return (
     <div className={s.calc}>
       <form onSubmit={(e) => e.preventDefault()} aria-label="Meal ingredients">
+        <p className={s.calcPeek} aria-hidden="true">
+          <span>this plate</span>
+          <strong>{total.toFixed(2)} kg CO2e</strong>
+          <span>${dollars.toFixed(3)}</span>
+        </p>
         <div className={s.field}>
           <label htmlFor={`${id}-protein`}>Main protein</label>
           <select id={`${id}-protein`} value={protein} onChange={(e) => setProtein(e.target.value as ProteinKey)}>
