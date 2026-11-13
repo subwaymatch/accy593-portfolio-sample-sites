@@ -196,7 +196,7 @@
   overflow: hidden;
   white-space: nowrap;
   width: calc(var(--n) * 1ch);
-  animation: type 0.9s steps(12, end) 0.3s both;
+  animation: type 0.6s steps(12, end) 0.15s both;
 }
 
 .cursor {
@@ -210,7 +210,7 @@
 }
 
 .reveal {
-  animation: reveal 0.5s ease-out 1.25s both;
+  animation: reveal 0.45s ease-out 0.75s both;
 }
 
 @keyframes type {
@@ -689,6 +689,8 @@
   color: #cfd8d2;
   overflow-x: auto;
   white-space: pre;
+  font-variant-ligatures: none;
+  tab-size: 4;
 }
 .code .c {
   color: #6f7b74;
@@ -736,6 +738,16 @@
 }
 .table tr:last-child td {
   border-bottom: none;
+}
+.table td:first-child,
+.table th:first-child {
+  position: sticky;
+  left: 0;
+  background: var(--panel);
+  box-shadow: 1px 0 0 var(--line);
+}
+.table th:first-child {
+  background: var(--panel-2);
 }
 .good {
   color: var(--green);
@@ -868,6 +880,10 @@
   height: 28px;
   border-radius: 3px;
   border: 1px solid var(--line);
+}
+
+.navShort {
+  display: none;
 }
 
 .dialogNav {
@@ -1064,8 +1080,13 @@
   .contactBody {
     padding: 18px;
   }
-  .dialogNav .btn {
-    font-size: 12.5px;
-    padding: 8px 12px;
+  .navShort {
+    display: inline;
+  }
+  .navLong {
+    display: none;
+  }
+  .thumb {
+    aspect-ratio: 16 / 9;
   }
 }

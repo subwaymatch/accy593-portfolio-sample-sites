@@ -110,7 +110,7 @@ export default function TerminalDarkPage() {
                   </a>
                 </div>
               </div>
-              <Window file="portrait.webp" className={styles.portrait}>
+              <Window file="dev.webp" className={styles.portrait}>
                 <img
                   src="/terminal-dark/portrait.webp"
                   alt="Stylised green line-art portrait of Dev Patel, smiling, in a dark sweater"

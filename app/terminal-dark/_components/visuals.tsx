@@ -393,7 +393,7 @@ export function HomeSalesTable() {
         </table>
       </div>
       <figcaption className={styles.caption}>
-        Illustrative sample data shaped like the site&apos;s neighborhood view, not real MLS records. Click a column to sort.
+        Illustrative sample data shaped like the site&apos;s neighborhood view, not real MLS records. Click a column to sort; on a phone, scroll the table sideways.
       </figcaption>
     </figure>
   );

@@ -204,13 +204,15 @@ export default function WorkBrowser() {
               </div>
               <nav className={styles.dialogNav} aria-label="More work">
                 {prev && (
-                  <button type="button" className={styles.btn} onClick={() => go(-1)}>
-                    ← {prev.file}
+                  <button type="button" className={styles.btn} onClick={() => go(-1)} aria-label={`Previous: ${prev.title}`}>
+                    ← <span className={styles.navLong}>{prev.file}</span>
+                    <span className={styles.navShort}>prev</span>
                   </button>
                 )}
                 {next && (
-                  <button type="button" className={styles.btn} onClick={() => go(1)}>
-                    {next.file} →
+                  <button type="button" className={styles.btn} onClick={() => go(1)} aria-label={`Next: ${next.title}`}>
+                    <span className={styles.navLong}>{next.file}</span>
+                    <span className={styles.navShort}>next</span> →
                   </button>
                 )}
               </nav>
