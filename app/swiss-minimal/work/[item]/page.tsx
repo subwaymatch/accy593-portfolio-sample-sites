@@ -76,7 +76,7 @@ export default async function WorkItemPage({ params }: Props) {
 
         <p className={`${s.lead} ${s.detailLead}`}>{item.summary}</p>
 
-        {item.image && (
+        {item.image && item.heroOnDetail !== false && (
           <figure className={s.detailImage}>
             <img
               className={`${s.img} ${s.frame}`}
@@ -85,6 +85,7 @@ export default async function WorkItemPage({ params }: Props) {
               height={item.image.height}
               alt={item.image.alt}
             />
+            {item.image.caption && <figcaption className={s.caption}>{item.image.caption}</figcaption>}
           </figure>
         )}
 
@@ -93,12 +94,13 @@ export default async function WorkItemPage({ params }: Props) {
             {item.gallery.map((g) => (
               <figure key={g.src}>
                 <img className={s.img} src={g.src} width={g.width} height={g.height} alt={g.alt} loading="lazy" />
+                {g.caption && <figcaption className={s.caption}>{g.caption}</figcaption>}
               </figure>
             ))}
           </div>
         )}
 
-        {item.demo && !item.image && <div className={`${s.demo} ${s.demoTop}`}>{demos[item.demo]()}</div>}
+        {item.demo && <div className={`${s.demo} ${s.demoTop}`}>{demos[item.demo]()}</div>}
 
         {item.sections.map((sec) => (
           <section key={sec.heading} className={s.detailSection}>
@@ -110,8 +112,6 @@ export default async function WorkItemPage({ params }: Props) {
             </div>
           </section>
         ))}
-
-        {item.demo && item.image && <div className={s.demo}>{demos[item.demo]()}</div>}
 
         <nav className={s.pager} aria-label="More work">
           <Link href={`/swiss-minimal/work/${prev.slug}`}>

@@ -100,7 +100,7 @@ function Scatter({ w, h, compact }: { w: number; h: number; compact?: boolean })
       </text>
       {/* approval limit */}
       <line x1={m.l} x2={w - m.r} y1={y(25000)} y2={y(25000)} stroke="#000" strokeWidth={1.5} strokeDasharray="6 4" />
-      <text x={w - m.r - 4} y={y(25000) - 8} textAnchor="end" fontSize={fs} fill="#000" fontWeight={600}>
+      <text x={x(13.5)} y={y(25000) - 8} textAnchor="middle" fontSize={fs} fill="#000" fontWeight={600}>
         Approval limit $25,000
       </text>
       {entries

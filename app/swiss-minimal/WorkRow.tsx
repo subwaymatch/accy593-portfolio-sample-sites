@@ -2,7 +2,7 @@ import Link from "next/link";
 import { indexOf, type WorkItem } from "./data";
 import s from "./site.module.css";
 
-export default function WorkRow({ item }: { item: WorkItem }) {
+export default function WorkRow({ item, showThumb = true }: { item: WorkItem; showThumb?: boolean }) {
   return (
     <li className={s.row}>
       <Link href={`/swiss-minimal/work/${item.slug}`} className={s.rowLink}>
@@ -11,6 +11,16 @@ export default function WorkRow({ item }: { item: WorkItem }) {
         </span>
         <span className={s.rowTitle}>
           <span className={s.h3}>{item.title}</span>
+          {showThumb &&
+            (item.image ? (
+              <span className={s.rowThumb}>
+                <img src={item.image.src} width={item.image.width} height={item.image.height} alt="" loading="lazy" />
+              </span>
+            ) : (
+              <span className={`${s.rowThumb} ${s.rowThumbType}`} aria-hidden="true">
+                Essay
+              </span>
+            ))}
         </span>
         <span className={s.rowSummary}>{item.summary}</span>
         <span className={s.rowMeta}>

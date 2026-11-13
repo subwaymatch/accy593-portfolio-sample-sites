@@ -328,6 +328,7 @@
 
 /* ---------- budget ---------- */
 .budget {
+  margin-top: 24px;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gap, 24px);
@@ -346,6 +347,11 @@
   .budgetForm,
   .budgetOut {
     grid-column: 1 / -1;
+  }
+  .budgetOut {
+    order: -1;
+    border-bottom: 1px solid #000;
+    padding-bottom: 24px;
   }
 }
 

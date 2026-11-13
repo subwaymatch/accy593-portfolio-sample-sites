@@ -1,6 +1,6 @@
 export type Category = "Analytics" | "Systems" | "Web" | "Writing" | "Photography" | "Craft" | "Design";
 
-export type Img = { src: string; width: number; height: number; alt: string };
+export type Img = { src: string; width: number; height: number; alt: string; caption?: string };
 
 export type Section = { heading: string; body: string[] };
 
@@ -16,6 +16,8 @@ export type WorkItem = {
   tools: string[];
   summary: string;
   image?: Img;
+  /** Show the cover image on the detail page (false when the demo is the better visual). */
+  heroOnDetail?: boolean;
   gallery?: Img[];
   sections: Section[];
   demo?: Demo;
@@ -29,11 +31,12 @@ export const person = {
   linkedin: "https://www.linkedin.com/",
 };
 
-const img = (file: string, alt: string, width = 1200, height = 800): Img => ({
+const img = (file: string, alt: string, width = 1200, height = 800, caption?: string): Img => ({
   src: `/swiss-minimal/${file}`,
   width,
   height,
   alt,
+  caption,
 });
 
 export const items: WorkItem[] = [
@@ -48,6 +51,7 @@ export const items: WorkItem[] = [
     summary:
       "An anomaly screen for a synthetic general ledger. I combined three simple tests (posting time, amounts just under an approval limit, and first-digit frequencies) to narrow 2,400 entries to a short list worth a second look.",
     image: img("journal-entries.webp", "Abstract chart: a dense band of black dots with three isolated red dots far above it"),
+    heroOnDetail: false,
     sections: [
       {
         heading: "The question",
@@ -83,6 +87,7 @@ export const items: WorkItem[] = [
     summary:
       "A process-mining study of a synthetic purchase-to-pay event log. I rebuilt the as-is flow from timestamps, compared it with the documented three-way-match process, and wrote up where the two disagree.",
     image: img("process-mining.webp", "Four black squares joined by arrows, with a red arrow looping back from the third square to the second"),
+    heroOnDetail: false,
     sections: [
       {
         heading: "Context",
@@ -101,7 +106,7 @@ export const items: WorkItem[] = [
       {
         heading: "Deliverable",
         body: [
-          "A four-page memo for a fictional controller with the process map, the three variants that matter, and one recommendation per variant. The map below is a simplified version of the one in the memo.",
+          "A four-page memo for a fictional controller with the process map, the three variants that matter, and one recommendation per variant. The figures at the top of this page are simplified versions of the ones in the memo.",
         ],
       },
     ],
@@ -118,6 +123,7 @@ export const items: WorkItem[] = [
     summary:
       "A one-screen dashboard design for tracking SOX-style control testing at a mid-size company. The brief I set myself: a controller should know in ten seconds what is late, what failed, and who owns it.",
     image: img("controls-dashboard.webp", "Abstract dashboard of black outlined panels with bar shapes and one red status square"),
+    heroOnDetail: false,
     sections: [
       {
         heading: "Problem",
@@ -135,7 +141,7 @@ export const items: WorkItem[] = [
       {
         heading: "Prototype",
         body: [
-          "The block below is a static HTML version of the main panel using sample data. The Power BI version reads from the same table layout.",
+          "The panel at the top of this page is a static HTML version of the main view, filled with sample data. The Power BI version reads from the same table layout.",
         ],
       },
     ],
@@ -167,9 +173,9 @@ export const items: WorkItem[] = [
         ],
       },
       {
-        heading: "Sample of the data view",
+        heading: "About the sample view",
         body: [
-          "The table below uses illustrative figures, not real sales, to show how the comparison view is laid out.",
+          "The chart near the top of this page uses illustrative figures, not real sales, to show how the comparison view is laid out.",
         ],
       },
     ],
@@ -185,6 +191,8 @@ export const items: WorkItem[] = [
     tools: ["React", "TypeScript"],
     summary:
       "A minimalist budgeting app I built for my own stipend. One income line, a handful of categories, and a single bar that tells you how much of the month is already spoken for. Try it below.",
+    image: img("budget-app.webp", "Flat illustration of a phone screen with a black, grey and red budget bar and ruled category lines"),
+    heroOnDetail: false,
     sections: [
       {
         heading: "Why build another budget app",
@@ -211,10 +219,10 @@ export const items: WorkItem[] = [
     tools: ["Pentax K1000", "Ilford HP5+", "Home darkroom"],
     summary:
       "An ongoing black-and-white series about the flat geometry of central Illinois: grain elevators, power lines, concrete and long shadows. Shot on 35 mm and developed in my bathroom.",
-    image: img("film-01.webp", "Black and white photograph of a grain elevator and a line of power poles on flat, empty prairie"),
+    image: img("film-01.webp", "Black and white photograph of a grain elevator and a line of power poles on flat, empty prairie", 1200, 800, "Elevator and power line, east of town. HP5+, 1/250 at f/11."),
     gallery: [
-      img("film-02.webp", "Black and white photograph of a stair railing casting hard diagonal shadows on a concrete wall", 1024, 1024),
-      img("film-03.webp", "Black and white photograph of a water tower seen from below against a pale sky", 1024, 1536),
+      img("film-02.webp", "Black and white photograph of a stair railing casting hard diagonal shadows on a concrete wall", 1024, 1024, "Stair shadow, campus parking deck, 4 p.m."),
+      img("film-03.webp", "Black and white photograph of a water tower seen from below against a pale sky", 1024, 1536, "Water tower with crow, late October."),
     ],
     sections: [
       {
