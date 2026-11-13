@@ -9,3 +9,6 @@ next-env.d.ts
 # local scratch
 *.log
 .DS_Store
+
+# agent worktrees
+.claude/worktrees/
