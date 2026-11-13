@@ -259,6 +259,10 @@
   margin: 0;
 }
 
+.pageTitle {
+  margin-bottom: 18px;
+}
+
 .eyebrow {
   display: inline-block;
   font-family: var(--riso-mono), monospace;
@@ -483,6 +487,110 @@
   margin: 0;
   font-size: 0.97rem;
   color: var(--muted);
+}
+
+@media (min-width: 640px) {
+  .gridFeature {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gridFeature > :first-child {
+    grid-column: span 2;
+  }
+
+  .gridFeature > :first-child .cardMedia {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+@media (min-width: 1000px) {
+  .gridFeature {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gridFeature > :first-child .cardMedia {
+    aspect-ratio: 5 / 2;
+  }
+
+  .gridFeature > :first-child .cardTitle {
+    font-size: 1.7rem;
+  }
+}
+
+.printNo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--riso-mono), monospace;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  padding: 3px 7px;
+  background: var(--paper-2);
+  border: 2px solid var(--ink);
+}
+
+/* ---------- home: right now ---------- */
+
+.now {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 20px 48px;
+  padding: clamp(22px, 4vw, 44px);
+  border: var(--line);
+  background-color: var(--paper-2);
+  box-shadow: 10px 10px 0 var(--teal);
+}
+
+.nowIntro p {
+  margin: 14px 0 0;
+  color: var(--muted);
+}
+
+.nowList {
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.nowList div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 2px dashed rgb(27 34 80 / 0.35);
+}
+
+.nowList dt {
+  font-family: var(--riso-mono), monospace;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+  padding-top: 3px;
+}
+
+.nowList dd {
+  margin: 0;
+}
+
+.nowCta {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+@media (max-width: 800px) {
+  .now {
+    grid-template-columns: 1fr;
+  }
+
+  .nowList div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
 }
 
 /* ---------- footer ---------- */

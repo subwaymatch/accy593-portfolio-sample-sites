@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Ink, WorkItem } from "../data";
+import { work, type Ink, type WorkItem } from "../data";
 import styles from "../riso.module.css";
 
 export const inkClass: Record<Ink, string> = {
@@ -10,6 +10,7 @@ export const inkClass: Record<Ink, string> = {
 };
 
 export default function WorkCard({ item, eager = false }: { item: WorkItem; eager?: boolean }) {
+  const no = work.findIndex((w) => w.slug === item.slug) + 1;
   return (
     <Link href={`/risograph-print/work/${item.slug}`} className={`${styles.card} ${inkClass[item.ink]}`}>
       <div className={styles.cardMedia}>
@@ -20,6 +21,9 @@ export default function WorkCard({ item, eager = false }: { item: WorkItem; eage
           height={item.image.height}
           loading={eager ? "eager" : "lazy"}
         />
+        <span className={styles.printNo} aria-hidden="true">
+          No.{String(no).padStart(2, "0")}
+        </span>
       </div>
       <div className={styles.cardBody}>
         <span className={styles.kicker}>{item.kicker}</span>

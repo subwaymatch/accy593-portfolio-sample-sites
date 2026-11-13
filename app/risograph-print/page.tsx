@@ -78,9 +78,9 @@ export default function RisoHome() {
             All work →
           </Link>
         </div>
-        <div className={styles.grid}>
-          {business.map((item) => (
-            <WorkCard key={item.slug} item={item} />
+        <div className={`${styles.grid} ${styles.gridFeature}`}>
+          {business.map((item, i) => (
+            <WorkCard key={item.slug} item={item} eager={i < 2} />
           ))}
         </div>
       </section>
@@ -89,10 +89,49 @@ export default function RisoHome() {
         <div className={styles.sectionHead}>
           <h2 className={`${styles.misreg} ${styles.misregTeal} ${styles.h2}`}>Off the clock</h2>
         </div>
-        <div className={styles.grid}>
+        <div className={`${styles.grid} ${styles.gridFeature}`}>
           {personal.map((item) => (
             <WorkCard key={item.slug} item={item} />
           ))}
+        </div>
+      </section>
+
+      <section className={`${styles.wrap} ${styles.section}`}>
+        <div className={styles.now}>
+          <div className={styles.nowIntro}>
+            <h2 className={`${styles.misreg} ${styles.h2}`}>Right now</h2>
+            <p>
+              Fall 2026, second floor of the Business Instructional Facility, usually with a spreadsheet open and a
+              basketball game on mute.
+            </p>
+          </div>
+          <dl className={styles.nowList}>
+            <div>
+              <dt>Taking</dt>
+              <dd>ACCY 593, data analytics for accountants, valuation, audit.</dd>
+            </div>
+            <div>
+              <dt>Building</dt>
+              <dd>A second version of the club model with a monthly cash forecast.</dd>
+            </div>
+            <div>
+              <dt>Looking for</dt>
+              <dd>Full-time FP&amp;A, advisory or sports finance roles from summer 2027.</dd>
+            </div>
+          </dl>
+          <div className={styles.nowCta}>
+            <a className={styles.btn} href="mailto:liam.okafor@example.com">
+              Email me
+            </a>
+            <a
+              className={`${styles.btn} ${styles.btnGhost}`}
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+          </div>
         </div>
       </section>
     </>

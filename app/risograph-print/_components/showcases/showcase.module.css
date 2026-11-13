@@ -941,9 +941,8 @@ ol.memoList {
 
 .mapWrap {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-  gap: 28px;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 34px;
 }
 
 .mapFigure {
@@ -961,13 +960,44 @@ ol.memoList {
   mix-blend-mode: multiply;
 }
 
+.mapCanvas {
+  position: relative;
+}
+
+.mapPin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  min-width: 34px;
+  height: 34px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--orange);
+  border: 2.5px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--blue);
+  font-family: var(--riso-display), sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .mapPin {
+    min-width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
+    border-width: 2px;
+  }
+}
+
 .mapKey {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 18px 32px;
 }
 
 .mapKey li {
@@ -997,8 +1027,7 @@ ol.memoList {
 
 @media (max-width: 900px) {
   .calc,
-  .songGrid,
-  .mapWrap {
+  .songGrid {
     grid-template-columns: 1fr;
   }
 

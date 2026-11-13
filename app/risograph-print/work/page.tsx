@@ -16,7 +16,7 @@ export default function WorkIndex() {
     <div className={styles.wrap}>
       <section className={styles.section}>
         <p className={styles.eyebrow}>Work · {work.length} prints</p>
-        <h1 className={`${styles.misreg} ${styles.h2}`}>The work</h1>
+        <h1 className={`${styles.misreg} ${styles.h2} ${styles.pageTitle}`}>The work</h1>
         <p className={styles.lede}>
           Five business and analytics projects, then five things I make for fun. Each one opens to
           show the actual work: charts, models, a working calculator, lyrics and recipes.
@@ -27,7 +27,7 @@ export default function WorkIndex() {
         <div className={styles.sectionHead}>
           <h2 className={`${styles.misreg} ${styles.h2}`}>Business & analytics</h2>
         </div>
-        <div className={styles.grid}>
+        <div className={`${styles.grid} ${styles.gridFeature}`}>
           {business.map((item, i) => (
             <WorkCard key={item.slug} item={item} eager={i < 3} />
           ))}
@@ -38,7 +38,7 @@ export default function WorkIndex() {
         <div className={styles.sectionHead}>
           <h2 className={`${styles.misreg} ${styles.misregTeal} ${styles.h2}`}>Off the clock</h2>
         </div>
-        <div className={styles.grid}>
+        <div className={`${styles.grid} ${styles.gridFeature}`}>
           {personal.map((item) => (
             <WorkCard key={item.slug} item={item} />
           ))}

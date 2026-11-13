@@ -37,7 +37,7 @@
   display: block;
   width: 100%;
   height: auto;
-  max-height: 560px;
+  max-height: 470px;
   object-fit: cover;
   mix-blend-mode: multiply;
 }
