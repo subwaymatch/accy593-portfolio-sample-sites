@@ -38,8 +38,8 @@ export default function BenfordChart() {
   const verdict =
     mad <= 0.006 ? "Close conformity" : mad <= 0.012 ? "Acceptable conformity" : mad <= 0.015 ? "Marginal conformity" : "Nonconformity";
 
-  const height = 280;
-  const m = { top: 16, right: 12, bottom: 34, left: 40 };
+  const height = 290;
+  const m = { top: 16, right: 12, bottom: 44, left: 40 };
   const iw = width - m.left - m.right;
   const ih = height - m.top - m.bottom;
   const yMax = 0.35;

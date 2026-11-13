@@ -54,6 +54,23 @@ export default async function ArticlePage({ params }: Props) {
         <aside className={s.did}>
           <h2 className={s.didLabel}>What I Did</h2>
           <p>{it.did}</p>
+          <dl className={s.didMeta}>
+            <div>
+              <dt>Filed</dt>
+              <dd>{it.date}</dd>
+            </div>
+            <div>
+              <dt>Desk</dt>
+              <dd>{it.desk === "business" ? "Business & Analytics" : "Off the Clock"}</dd>
+            </div>
+            <div>
+              <dt>Format</dt>
+              <dd>{it.kicker}</dd>
+            </div>
+          </dl>
+          <Link href="/editorial-journal" className={s.more}>
+            <span aria-hidden="true">&larr;</span> Front page
+          </Link>
         </aside>
         <ArticleBody blocks={it.body} />
       </div>

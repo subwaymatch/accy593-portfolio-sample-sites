@@ -39,9 +39,19 @@ export default function JournalLayout({ children }: Readonly<{ children: React.R
           <span className={s.datelineMid}>{issue.place}</span>
           <span>{issue.date} Edition</span>
         </div>
-        <Link href="/editorial-journal" className={s.nameplate}>
-          {issue.paper}
-        </Link>
+        <div className={s.nameRow}>
+          <p className={`${s.ear} ${s.earLeft}`}>
+            <span className={s.earLabel}>Inside</span>
+            Benford&rsquo;s law meets an expense report
+          </p>
+          <Link href="/editorial-journal" className={s.nameplate}>
+            {issue.paper}
+          </Link>
+          <p className={`${s.ear} ${s.earRight}`}>
+            <span className={s.earLabel}>Forecast</span>
+            Cold, clear, busy season ahead
+          </p>
+        </div>
         <p className={s.motto}>
           Accounting, fraud and other true stories &middot; written and edited by {person.name}
         </p>

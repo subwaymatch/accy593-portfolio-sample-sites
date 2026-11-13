@@ -78,7 +78,7 @@ export default function HomesDemo() {
       </div>
       <div className={s.demoSummary} aria-live="polite">
         <div>
-          <span className={s.demoStatLabel}>Sales shown</span>
+          <span className={s.demoStatLabel}>Sales</span>
           <span className={s.demoStat}>{shown.length}</span>
         </div>
         <div>
@@ -86,7 +86,7 @@ export default function HomesDemo() {
           <span className={s.demoStat}>{shown.length ? usd(medPrice) : "n/a"}</span>
         </div>
         <div>
-          <span className={s.demoStatLabel}>Median $/sq ft</span>
+          <span className={s.demoStatLabel}>Median / sq ft</span>
           <span className={s.demoStat}>{shown.length ? usd(medPpsf) : "n/a"}</span>
         </div>
       </div>

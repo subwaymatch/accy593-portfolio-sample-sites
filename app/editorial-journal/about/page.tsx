@@ -91,29 +91,31 @@ export default function AboutPage() {
         </div>
 
         <aside className={s.factBox}>
-          <h2 className={s.didLabel}>At a Glance</h2>
-          <dl className={s.facts}>
-            <div>
-              <dt>Studying</dt>
-              <dd>{person.program}</dd>
-            </div>
-            <div>
-              <dt>School</dt>
-              <dd>{person.school}</dd>
-            </div>
-            <div>
-              <dt>This semester</dt>
-              <dd>{person.course}, plus auditing and forensic accounting coursework</dd>
-            </div>
-            <div>
-              <dt>Interests</dt>
-              <dd>Forensic accounting, fraud examination, data analytics, writing for general readers</dd>
-            </div>
-            <div>
-              <dt>Tools</dt>
-              <dd>Excel, SQL, Tableau, a red pen</dd>
-            </div>
-          </dl>
+          <div>
+            <h2 className={s.didLabel}>At a Glance</h2>
+            <dl className={s.facts}>
+              <div>
+                <dt>Studying</dt>
+                <dd>{person.program}</dd>
+              </div>
+              <div>
+                <dt>School</dt>
+                <dd>{person.school}</dd>
+              </div>
+              <div>
+                <dt>This semester</dt>
+                <dd>{person.course}, plus auditing and forensic accounting coursework</dd>
+              </div>
+              <div>
+                <dt>Interests</dt>
+                <dd>Forensic accounting, fraud examination, data analytics, writing for general readers</dd>
+              </div>
+              <div>
+                <dt>Tools</dt>
+                <dd>Excel, SQL, Tableau, a red pen</dd>
+              </div>
+            </dl>
+          </div>
 
           <div id="contact" className={s.contact}>
             <h2 className={s.didLabel}>Contact the Editor</h2>

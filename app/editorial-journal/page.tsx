@@ -49,7 +49,7 @@ export default function FrontPage() {
         </article>
 
         <aside className={s.rail}>
-          <div className={s.railBox}>
+          <div className={`${s.railBox} ${s.railIndex}`}>
             <h2 className={s.railLabel}>In This Issue</h2>
             <ol className={s.index}>
               {items.map((it, i) => (
