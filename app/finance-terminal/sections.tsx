@@ -18,7 +18,8 @@ export function Header() {
       </a>
       <p className={styles.status}>
         <span className={styles.statusDot} aria-hidden="true" />
-        <span>Open to summer 2027 roles</span>
+        <span className={styles.statusLong}>Open to summer 2027 roles</span>
+        <span className={styles.statusShort}>Open to work</span>
       </p>
     </>
   );

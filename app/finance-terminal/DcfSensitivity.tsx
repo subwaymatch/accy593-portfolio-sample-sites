@@ -68,7 +68,8 @@ export default function DcfSensitivity() {
           <thead>
             <tr>
               <th scope="col" className={styles.sensCorner}>
-                g \ WACC
+                <span aria-hidden="true">g ↓ WACC →</span>
+                <span className={styles.srOnly}>Terminal growth by WACC</span>
               </th>
               {WACCS.map((w) => (
                 <th key={w} scope="col" className={w === sel.w ? styles.sensActiveHead : undefined}>
@@ -110,10 +111,11 @@ export default function DcfSensitivity() {
         </table>
       </div>
       <p className={styles.legendRow}>
-        <span className={styles.legendUp}>▲ more than 5% above</span>
-        <span className={styles.legendFlat}>■ within ±5% of</span>
-        <span className={styles.legendDown}>▼ more than 5% below</span>
-        <span>the $38.40 current price · ● base case</span>
+        <span>Shading vs. the $38.40 current price:</span>
+        <span className={styles.legendUp}>▲ over +5%</span>
+        <span className={styles.legendFlat}>■ within ±5%</span>
+        <span className={styles.legendDown}>▼ under −5%</span>
+        <span className={styles.legendFlat}>● base case</span>
       </p>
 
       <dl className={styles.bridge} aria-live="polite">

@@ -107,12 +107,13 @@ export function CashChart() {
           );
         })}
         <line x1={m.l} x2={W - m.r} y1={y(floor)} y2={y(floor)} className={styles.floorLine} />
-        <text x={W - m.r} y={y(floor) - 6} textAnchor="end" className={styles.floorText}>
-          Minimum cash $50k
-        </text>
-        <text x={m.l + iw / 2} y={H - 4} textAnchor="middle" className={styles.axisText}>
-          Week
-        </text>
+        {/* Legend for the policy line, kept clear of the bars in the top-right corner. */}
+        <g aria-hidden="true">
+          <line x1={W - m.r - 250} x2={W - m.r - 218} y1={m.t + 8} y2={m.t + 8} className={styles.floorLine} />
+          <text x={W - m.r - 212} y={m.t + 13} textAnchor="start" className={styles.floorText}>
+            Minimum cash $50k
+          </text>
+        </g>
       </svg>
       <figcaption className={styles.figcaption}>
         Ending cash by week, $ thousands. Sample data for a fictional contractor. Hover or tap a bar for the week&apos;s
@@ -202,7 +203,7 @@ export function PaceChart() {
   const pts = runWeeks.filter((d) => d.pace > 0);
   const W = 640;
   const H = 200;
-  const m = { t: 18, r: 14, b: 30, l: 48 };
+  const m = { t: 18, r: 14, b: 30, l: 66 };
   const iw = W - m.l - m.r;
   const ih = H - m.t - m.b;
   const lo = 510;
@@ -236,8 +237,8 @@ export function PaceChart() {
           return (
             <text
               key={wk}
-              x={x(wk) + (wk === 1 ? 8 : -8)}
-              y={y(p.pace) + (wk === 1 ? -10 : 18)}
+              x={x(wk) + (wk === 1 ? 6 : -4)}
+              y={y(p.pace) + (wk === 1 ? 26 : -12)}
               textAnchor={wk === 1 ? "start" : "end"}
               className={styles.valueText}
             >

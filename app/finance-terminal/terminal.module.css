@@ -126,6 +126,16 @@
   letter-spacing: 0.05em;
 }
 
+.statusShort {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .statusShort {
+    display: inline;
+  }
+}
+
 .statusDot {
   width: 8px;
   height: 8px;
@@ -682,7 +692,7 @@
 
 .cardGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   margin: 0;
   padding: 0;
@@ -708,7 +718,9 @@
 .cardMedia {
   position: relative;
   display: block;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 9;
+  background: #0d1626;
+  overflow: hidden;
   border-bottom: 1px solid var(--line);
 }
 
@@ -1156,7 +1168,7 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 2 / 1;
   object-fit: cover;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1186,9 +1198,25 @@
 
 .dList {
   margin: 0;
-  padding-left: 18px;
+  padding: 0;
+  list-style: none;
   display: grid;
-  gap: 6px;
+  gap: 8px;
+}
+
+.dList li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.dList li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--amber);
+  font-size: 12px;
+  line-height: 1.9;
 }
 
 .tableScroll {
@@ -1696,9 +1724,20 @@
   font-weight: 600;
 }
 
+.bridge dd.textUp {
+  color: var(--green);
+}
+
+.bridge dd.textDown {
+  color: var(--red);
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1100px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .kpiGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1763,7 +1802,7 @@
   .tabKey {
     display: none;
   }
-  .status span:last-child {
+  .statusLong {
     display: none;
   }
   .kpiGrid {
@@ -1829,6 +1868,7 @@
   .drawerBody {
     padding: 16px;
   }
+  .cardGrid,
   .boards,
   .gallery,
   .calloutRow {
@@ -1847,6 +1887,39 @@
     grid-column: 1;
   }
   .sensTable {
-    font-size: 12px;
+    font-size: 11px;
+    border-spacing: 1px;
+  }
+  .sensTable th {
+    font-size: 10px;
+    padding: 4px 1px;
+  }
+  .sensCorner {
+    white-space: normal;
+    line-height: 1.2;
+  }
+  .sensCell {
+    padding: 8px 0;
+  }
+  /* Scale chart text up so it stays legible when the SVG shrinks to phone width. */
+  .axisText,
+  .floorText,
+  .coord {
+    font-size: 19px;
+  }
+  .valueText {
+    font-size: 21px;
+  }
+  .ctaRow {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ctaRow > :first-child {
+    grid-column: 1 / -1;
+  }
+  .ctaPrimary,
+  .ctaGhost {
+    justify-content: center;
+    padding: 11px 12px;
   }
 }
