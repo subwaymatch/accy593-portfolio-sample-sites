@@ -121,7 +121,7 @@ export function HomesFeature({ cover }: { cover: Img }) {
       <div className={f.card} data-reveal>
         <p className={f.kicker}>Listings view · sample data</p>
         <div className={f.tableWrap}>
-          <table className={f.table}>
+          <table className={`${f.table} ${f.listings}`}>
             <caption className={f.srOnly}>Sample listings from the site, sorted by move-in date</caption>
             <thead>
               <tr>
@@ -140,13 +140,15 @@ export function HomesFeature({ cover }: { cover: Img }) {
                     {l.name}
                     <span className={f.small}>{l.area}</span>
                   </th>
-                  <td>{usd(l.price)}</td>
-                  <td>
+                  <td data-label="Price">{usd(l.price)}</td>
+                  <td data-label="Beds / baths">
                     {l.beds} / {l.baths}
                   </td>
-                  <td>{l.moveIn}</td>
-                  <td>{l.walk}</td>
-                  <td>{usd(monthly(l.price).total)}</td>
+                  <td data-label="Move-in">{l.moveIn}</td>
+                  <td data-label="To the Quad">{l.walk}</td>
+                  <td data-label="Est. monthly" className={f.monthlyCell}>
+                    {usd(monthly(l.price).total)}
+                  </td>
                 </tr>
               ))}
             </tbody>
