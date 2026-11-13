@@ -214,7 +214,7 @@ function Thumb({ item }: { item: WorkItem }) {
     );
   }
   return (
-    <svg className={styles.cardImg} viewBox="0 0 300 200" aria-hidden="true">
+    <svg className={styles.cardImg} viewBox="0 0 300 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <rect width="300" height="200" className={styles.glyphBg} />
       {item.glyph === "chess" &&
         Array.from({ length: 36 }).map((_, i) => {
@@ -350,6 +350,11 @@ export function Work() {
 
 export function About() {
   return (
+    <div className={styles.stack}>
+    <div className={styles.workIntro}>
+      <h1 className={styles.sectionTitle}>About</h1>
+      <p>Who I am, what I study, and the tools I reach for.</p>
+    </div>
     <div className={styles.aboutGrid}>
       <section className={`${styles.box} ${styles.profile}`} aria-labelledby="ft-profile">
         <img
@@ -392,6 +397,7 @@ export function About() {
       <div className={styles.stack}>
         <section className={styles.box} aria-labelledby="ft-bio">
           <PanelHead title="About me" code="BIO" id="ft-bio" />
+          <div className={styles.bioGrid}>
           <div className={styles.prose}>
             <p>
               I&apos;m in the MS in Accountancy program at Gies, where I spend most of my time in financial reporting,
@@ -407,6 +413,28 @@ export function About() {
               Outside class I run (one marathon so far), play rapid chess badly but enthusiastically, take photographs
               around downtown Champaign at dusk, and sew notebooks by hand.
             </p>
+          </div>
+          <aside className={styles.interests} aria-label="Career interests, ranked">
+            <p className={styles.interestsHead}>Interest allocation</p>
+            <ul>
+              {[
+                { name: "Valuation", w: 40, note: "DCF, comps, deal work" },
+                { name: "FP&A", w: 35, note: "Forecasts, budgets, variance" },
+                { name: "Corporate finance", w: 25, note: "Capital budgeting, treasury" },
+              ].map((x) => (
+                <li key={x.name}>
+                  <span className={styles.interestRow}>
+                    <span>{x.name}</span>
+                    <span className={styles.interestPct}>{x.w}%</span>
+                  </span>
+                  <span className={styles.meter} aria-hidden="true">
+                    <span style={{ width: `${x.w * 2.5}%` }} />
+                  </span>
+                  <span className={styles.skillNote}>{x.note}</span>
+                </li>
+              ))}
+            </ul>
+          </aside>
           </div>
         </section>
 
@@ -468,6 +496,7 @@ export function About() {
         </div>
       </div>
     </div>
+    </div>
   );
 }
 
@@ -526,6 +555,32 @@ export function Contact() {
             <dd className={styles.tone_up}>▲ Within 1 business day</dd>
           </div>
         </dl>
+      </section>
+      <section className={`${styles.box} ${styles.contactWide}`} aria-labelledby="ft-starters">
+        <PanelHead title="Good conversation starters" code="Q" id="ft-starters" />
+        <ul className={styles.starters}>
+          {[
+            {
+              id: "dcf-prairie-forge",
+              q: "Why does three quarters of the value sit in the terminal year, and what would you do about it?",
+            },
+            { id: "cash-13-week", q: "How would you roll a 13-week forecast forward with actuals every Monday?" },
+            { id: "lifo-reserve", q: "Which footnotes do you read before comparing two companies' margins?" },
+          ].map((x) => {
+            const it = items.find((i) => i.id === x.id)!;
+            return (
+              <li key={x.id}>
+                <a href={`#work/${x.id}`} className={styles.starter}>
+                  <span className={styles.sym}>{it.ticker}</span>
+                  <span className={styles.starterQ}>{x.q}</span>
+                  <span className={styles.cardOpen}>
+                    See the project <span aria-hidden="true">▸</span>
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </section>
     </div>
   );

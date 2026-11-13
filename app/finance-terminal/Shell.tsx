@@ -74,7 +74,8 @@ export default function Shell({ header, ticker, panels, details, footer }: Props
     window.history.replaceState(null, "", "#work");
     const target = returnFocus.current;
     returnFocus.current = null;
-    if (target && document.contains(target)) target.focus();
+    // Wait for React to drop `inert` from the page before restoring focus.
+    if (target && document.contains(target)) window.setTimeout(() => target.focus(), 0);
   }, []);
 
   // Drawer: focus the close button, lock page scroll, close on Escape.
@@ -202,7 +203,38 @@ export default function Shell({ header, ticker, panels, details, footer }: Props
                 </kbd>
               </button>
             </div>
-            <div className={styles.drawerBody}>{entry.body}</div>
+            <div className={styles.drawerBody} key={item}>
+              {entry.body}
+            </div>
+            <nav className={styles.drawerFoot} aria-label="More work">
+              {(() => {
+                const ids = Object.keys(details);
+                const i = ids.indexOf(item!);
+                const prev = ids[(i - 1 + ids.length) % ids.length];
+                const next = ids[(i + 1) % ids.length];
+                return (
+                  <>
+                    <a href={`#work/${prev}`} className={styles.footLink}>
+                      <span aria-hidden="true">◂</span>
+                      <span className={styles.footText}>
+                        <span className={styles.footLabel}>Previous</span>
+                        <span className={styles.footTitle}>{details[prev].title}</span>
+                      </span>
+                    </a>
+                    <span className={styles.footCount}>
+                      {i + 1} / {ids.length}
+                    </span>
+                    <a href={`#work/${next}`} className={`${styles.footLink} ${styles.footNext}`}>
+                      <span className={styles.footText}>
+                        <span className={styles.footLabel}>Next</span>
+                        <span className={styles.footTitle}>{details[next].title}</span>
+                      </span>
+                      <span aria-hidden="true">▸</span>
+                    </a>
+                  </>
+                );
+              })()}
+            </nav>
           </div>
         </div>
       )}

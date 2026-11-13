@@ -1903,8 +1903,7 @@
   }
   /* Scale chart text up so it stays legible when the SVG shrinks to phone width. */
   .axisText,
-  .floorText,
-  .coord {
+  .floorText {
     font-size: 19px;
   }
   .valueText {
@@ -1921,5 +1920,220 @@
   .ctaGhost {
     justify-content: center;
     padding: 11px 12px;
+  }
+}
+
+/* ---------- Round 3: drawer paging, about, contact, compact phone cards ---------- */
+
+.drawerFoot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
+.footLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  color: var(--amber) !important;
+  text-decoration: none;
+}
+
+.footLink:hover {
+  border-color: var(--line-2);
+}
+
+.footNext {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.footText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.footLabel {
+  font-family: var(--ft-mono), monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.footTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.footCount {
+  font-family: var(--ft-mono), monospace;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.bioGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 24px;
+}
+
+.interests {
+  padding-left: 20px;
+  border-left: 1px solid var(--line);
+}
+
+.interestsHead {
+  margin: 0 0 10px;
+  font-family: var(--ft-mono), monospace;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.interests ul {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+.interests li {
+  display: grid;
+  gap: 4px;
+}
+
+.interestRow {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.interestPct {
+  font-family: var(--ft-mono), monospace;
+  color: var(--amber);
+}
+
+.contactGrid {
+  align-items: start;
+}
+
+.contactWide {
+  grid-column: 1 / -1;
+}
+
+.starters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.starter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  text-decoration: none;
+}
+
+.starter:hover {
+  border-color: var(--amber);
+}
+
+.starterQ {
+  flex: 1;
+  color: var(--text);
+  font-size: 15px;
+}
+
+@media (max-width: 900px) {
+  .bioGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .interests {
+    padding: 14px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .starters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  /* Compact list-style cards on phones: thumbnail left, text right. */
+  .cardGrid {
+    gap: 10px;
+  }
+  .card {
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+  }
+  .cardMedia {
+    aspect-ratio: auto;
+    min-height: 100%;
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+  }
+  .cardImg {
+    position: absolute;
+    inset: 0;
+  }
+  .cardTicker {
+    top: auto;
+    bottom: 6px;
+    left: 6px;
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+  .cardBody {
+    padding: 10px 12px;
+    gap: 4px;
+  }
+  .cardMeta span:last-child {
+    display: none;
+  }
+  .cardTitle {
+    font-size: 15px;
+  }
+  .cardSummary {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 13px;
+  }
+  .cardFoot {
+    padding-top: 6px;
+  }
+  .drawerFoot {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+  }
+  .footCount {
+    display: none;
   }
 }

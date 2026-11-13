@@ -144,8 +144,7 @@ export default function DcfSensitivity() {
         <div>
           <dt>vs. $38.40</dt>
           <dd className={upside >= 0 ? styles.textUp : styles.textDown}>
-            {upside >= 0 ? "▲ +" : "▼ "}
-            {pct(upside)}
+            {upside >= 0 ? `▲ +${pct(upside)}` : `▼ −${pct(-upside)}`}
           </dd>
         </div>
       </dl>
