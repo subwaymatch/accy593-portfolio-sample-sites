@@ -13,6 +13,7 @@ export type WorkTile = {
   image?: { src: string; alt: string };
   teaser?: ReactNode;
   tools: string[];
+  demo?: boolean;
   body: ReactNode;
 };
 
@@ -31,7 +32,10 @@ export default function WorkGallery({ items }: { items: WorkTile[] }) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [filter, setFilter] = useState<Filter>("all");
   const shown = filter === "all" ? items : items.filter((i) => i.kind === filter);
-  const active = items.find((i) => i.id === activeId) ?? null;
+  const activeIndex = items.findIndex((i) => i.id === activeId);
+  const active = activeIndex >= 0 ? items[activeIndex] : null;
+  const prev = activeIndex >= 0 ? items[(activeIndex - 1 + items.length) % items.length] : null;
+  const next = activeIndex >= 0 ? items[(activeIndex + 1) % items.length] : null;
 
   const open = useCallback(
     (id: string) => {
@@ -121,6 +125,12 @@ export default function WorkGallery({ items }: { items: WorkTile[] }) {
                 <span className={styles.tag}>{item.tag}</span>
                 <span className={styles.tileTitle}>{item.title}</span>
                 <span className={styles.tileSummary}>{item.summary}</span>
+                <span className={styles.tileFoot}>
+                  {item.demo ? <span className={styles.demoBadge}>Interactive demo</span> : null}
+                  <span className={styles.openHint} aria-hidden="true">
+                    Open →
+                  </span>
+                </span>
               </span>
             </button>
           </li>
@@ -163,6 +173,18 @@ export default function WorkGallery({ items }: { items: WorkTile[] }) {
                 ))}
               </p>
             </div>
+            {prev && next ? (
+              <nav className={styles.pager} aria-label="More projects">
+                <button type="button" onClick={() => open(prev.id)}>
+                  <span>← Previous</span>
+                  <strong>{prev.title}</strong>
+                </button>
+                <button type="button" onClick={() => open(next.id)} data-next>
+                  <span>Next →</span>
+                  <strong>{next.title}</strong>
+                </button>
+              </nav>
+            ) : null}
           </article>
         ) : null}
       </dialog>

@@ -193,6 +193,7 @@ export const WORK: WorkTile[] = [
       </span>
     ),
     tools: ["React", "TypeScript", "SVG"],
+    demo: true,
     body: (
       <>
         <p>
@@ -272,6 +273,7 @@ export const WORK: WorkTile[] = [
       alt: "3D isometric grid of tiles with several glowing coral tiles marking conflicts, with padlocks and keys floating nearby.",
     },
     tools: ["Excel (Power Query)", "React", "COSO / SoD rule design"],
+    demo: true,
     body: (
       <>
         <p>

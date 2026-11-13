@@ -94,6 +94,86 @@
   color: var(--muted);
 }
 
+.tileText {
+  flex: 1;
+}
+
+.tileFoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.demoBadge {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.openHint {
+  display: inline-block;
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--faint);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.tile:hover .openHint,
+.tile:focus-visible .openHint {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+/* Prev / next inside the dialog */
+.pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0 24px 24px;
+}
+
+.pager button {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--tile-2);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pager button[data-next] {
+  text-align: right;
+}
+
+.pager button:hover {
+  border-color: var(--border-strong);
+}
+
+.pager span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.pager strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
 /* Teasers for tiles without a picture */
 .teaser {
   display: block;
@@ -425,7 +505,7 @@
 
 .entities {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   margin: 0 0 14px;
   padding: 0;
@@ -543,5 +623,13 @@
 
   .gallery {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .entities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pager {
+    padding: 0 18px 24px;
   }
 }
