@@ -4,7 +4,7 @@ const GROSS = 1200;
 const LINES = [
   { en: "Federal income tax", es: "Impuesto federal sobre la renta", amount: 78, color: "#6a4fb8", noteEn: "Depends on your W-4", noteEs: "Depende de tu formulario W-4" },
   { en: "Social Security (6.2%)", es: "Seguro Social (6.2%)", amount: GROSS * 0.062, color: "#2f6fb5", noteEn: "Counts toward retirement", noteEs: "Cuenta para tu jubilación" },
-  { en: "Medicare (1.45%)", es: "Medicare (1.45%)", amount: GROSS * 0.0145, color: "#16917a", noteEn: "Health coverage at 65", noteEs: "Seguro médico a los 65" },
+  { en: "Medicare tax", es: "Medicare (1.45%)", amount: GROSS * 0.0145, color: "#16917a", noteEn: "Health coverage at 65", noteEs: "Seguro médico a los 65" },
   { en: "Illinois income tax (4.95%)", es: "Impuesto de Illinois (4.95%)", amount: GROSS * 0.0495, color: "#d0683c", noteEn: "Flat rate, simplified", noteEs: "Tasa fija, simplificado" },
 ];
 const NET = GROSS - LINES.reduce((a, l) => a + l.amount, 0);

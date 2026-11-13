@@ -88,7 +88,17 @@
 }
 
 .mediaIcon {
-  padding: 1rem 2.5rem 0.25rem;
+  position: relative;
+  aspect-ratio: 16 / 10;
+}
+
+.mediaIcon img {
+  position: absolute;
+  inset: 0.75rem;
+  width: calc(100% - 1.5rem);
+  height: calc(100% - 1.5rem);
+  object-fit: contain;
+  filter: drop-shadow(0 10px 14px rgba(80, 60, 140, 0.18));
 }
 
 .lavender {
@@ -166,6 +176,9 @@
 
 /* Modal */
 .dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
   width: min(880px, calc(100vw - 2rem));
   max-width: none;
   max-height: calc(100dvh - 2rem);
@@ -264,6 +277,7 @@
 
 .role h4 {
   margin: 0 0 0.5rem;
+  font-weight: 800;
   font-family: var(--pg-font-head), sans-serif;
   font-size: 1.1rem;
 }
@@ -271,6 +285,11 @@
 .role ul {
   margin: 0;
   padding-left: 1.2rem;
+  list-style: disc;
+}
+
+.role li::marker {
+  color: var(--lavender);
 }
 
 .role li + li {
@@ -282,6 +301,12 @@
 }
 
 @media (max-width: 640px) {
+  .dialog {
+    width: calc(100vw - 1rem);
+    max-height: calc(100dvh - 1rem);
+    border-radius: 26px;
+  }
+
   .sheet {
     padding: 1.5rem 1.1rem;
   }

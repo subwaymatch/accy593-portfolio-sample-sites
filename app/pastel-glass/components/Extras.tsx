@@ -50,7 +50,7 @@ export function PropagationLog() {
   return (
     <div className={d.figure}>
       <div className={d.tableScroll}>
-        <table className={d.table}>
+        <table className={`${d.table} ${d.stackTable}`}>
           <caption className={d.tableCaption}>Water propagation, south-facing window, winter 2025–26</caption>
           <thead>
             <tr>
@@ -65,10 +65,10 @@ export function PropagationLog() {
             {PROPAGATION.map((p) => (
               <tr key={p.plant}>
                 <th scope="row">{p.plant}</th>
-                <td>{p.cut}</td>
-                <td>{p.roots}</td>
-                <td>{p.potted}</td>
-                <td>{p.note}</td>
+                <td data-label="Cut">{p.cut}</td>
+                <td data-label="Days to first root">{p.roots}</td>
+                <td data-label="Potted">{p.potted}</td>
+                <td data-label="Notes">{p.note}</td>
               </tr>
             ))}
           </tbody>

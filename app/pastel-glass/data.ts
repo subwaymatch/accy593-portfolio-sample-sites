@@ -32,7 +32,7 @@ export const WORK: WorkItem[] = [
       "Proposed adding an intake screener at the door and moving one certified preparer from the 2 p.m. shift to 10 a.m.; the site coordinator approved both from week 6.",
       "Presented the before-and-after chart below at the end-of-season volunteer meeting.",
     ],
-    image: { src: "/pastel-glass/vita.png", width: 600, height: 600, alt: "Clay illustration of a clipboard, a wall clock and three people waiting on chairs", transparent: true },
+    image: { src: "/pastel-glass/vita.png", width: 582, height: 501, alt: "Clay illustration of a clipboard, a wall clock and three people waiting on chairs", transparent: true },
     tint: "sky",
   },
   {
@@ -48,7 +48,7 @@ export const WORK: WorkItem[] = [
       "Wrote the rules for the SALT cap and the 7.5%-of-AGI medical floor, then checked the output against a dozen practice returns from training.",
       "Kept it deliberately simple, with a plain warning that it is a teaching tool and not tax advice.",
     ],
-    image: { src: "/pastel-glass/deduction.png", width: 600, height: 600, alt: "Clay illustration of a balance scale weighing one card against receipts, a house and a heart", transparent: true },
+    image: { src: "/pastel-glass/deduction.png", width: 592, height: 394, alt: "Clay illustration of a balance scale weighing one card against receipts, a house and a heart", transparent: true },
     tint: "lavender",
   },
   {
@@ -64,7 +64,7 @@ export const WORK: WorkItem[] = [
       "Calculated program expense ratio, cost to raise a dollar and months of operating reserve for each organisation.",
       "Wrote a short memo arguing that a single overhead percentage hides more than it shows.",
     ],
-    image: { src: "/pastel-glass/form990.png", width: 600, height: 600, alt: "Clay illustration of three small community buildings, a pantry, a library and a garden house, each with a bar of different height", transparent: true },
+    image: { src: "/pastel-glass/form990.png", width: 600, height: 338, alt: "Clay illustration of three small community buildings, a pantry, a library and a garden house, each with a bar of different height", transparent: true },
     tint: "mint",
   },
   {
@@ -80,7 +80,7 @@ export const WORK: WorkItem[] = [
       "Used one worked example (a $1,200 biweekly check) instead of formulas, so students could follow each dollar.",
       "Laid it out with large type and colour-coded blocks that still work when printed in black and white.",
     ],
-    image: { src: "/pastel-glass/paycheck.png", width: 600, height: 600, alt: "Clay illustration of an envelope with a paycheck stub, a piggy bank and two speech bubbles", transparent: true },
+    image: { src: "/pastel-glass/paycheck.png", width: 586, height: 520, alt: "Clay illustration of an envelope with a paycheck stub, a piggy bank and two speech bubbles", transparent: true },
     tint: "peach",
   },
   {
@@ -111,7 +111,7 @@ export const WORK: WorkItem[] = [
       "Wrote and edited the post for our VITA site's volunteer newsletter.",
       "Changed every client detail so nobody could be recognised.",
     ],
-    image: { src: "/pastel-glass/notebook.png", width: 600, height: 600, alt: "Clay illustration of an open notebook, a mug of tea, a pen and a clipped stack of forms", transparent: true },
+    image: { src: "/pastel-glass/notebook.png", width: 600, height: 562, alt: "Clay illustration of an open notebook, a mug of tea, a pen and a clipped stack of forms", transparent: true },
     tint: "lavender",
   },
   {

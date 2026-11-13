@@ -3,6 +3,7 @@ import d from "./details.module.css";
 // Fictional organisations and figures, invented for this exercise.
 type Org = {
   name: string;
+  short: string;
   color: string;
   program: number; // Part IX line 25, column B
   management: number; // column C
@@ -12,9 +13,9 @@ type Org = {
 };
 
 const ORGS: Org[] = [
-  { name: "Prairie Table Food Pantry", color: "#d0683c", program: 1054000, management: 124000, fundraising: 62000, contributions: 980000, reserves: 310000 },
-  { name: "Lantern Literacy Library", color: "#6a4fb8", program: 359600, management: 92300, fundraising: 34100, contributions: 412000, reserves: 520000 },
-  { name: "Boneyard Creek Garden Collective", color: "#16917a", program: 128000, management: 17400, fundraising: 12600, contributions: 96000, reserves: 21000 },
+  { name: "Prairie Table Food Pantry", short: "Pantry", color: "#d0683c", program: 1054000, management: 124000, fundraising: 62000, contributions: 980000, reserves: 310000 },
+  { name: "Lantern Literacy Library", short: "Library", color: "#6a4fb8", program: 359600, management: 92300, fundraising: 34100, contributions: 412000, reserves: 520000 },
+  { name: "Boneyard Creek Garden Collective", short: "Garden", color: "#16917a", program: 128000, management: 17400, fundraising: 12600, contributions: 96000, reserves: 21000 },
 ];
 
 const rows = ORGS.map((o) => {
@@ -28,6 +29,17 @@ const rows = ORGS.map((o) => {
   };
 });
 
+const FIGURES = [
+  { key: "total" as const, label: "Total expenses", line: "Part IX, line 25(A)" },
+  { key: "program" as const, label: "Program services", line: "Part IX, line 25(B)" },
+  { key: "management" as const, label: "Management & general", line: "Part IX, line 25(C)" },
+  { key: "fundraising" as const, label: "Fundraising", line: "Part IX, line 25(D)" },
+  { key: "contributions" as const, label: "Contributions", line: "Part VIII, line 1h" },
+  { key: "reserves" as const, label: "Liquid reserves", line: "From the balance sheet" },
+];
+
+const compact = (n: number) =>
+  "$" + n.toLocaleString("en-US", { notation: "compact", maximumFractionDigits: n >= 1e6 ? 2 : 0 });
 const usd = (n: number) => n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
 const METRICS = [
@@ -88,25 +100,29 @@ export default function Form990Compare() {
           <caption className={d.tableCaption}>Figures pulled from each (fictional) return</caption>
           <thead>
             <tr>
-              <th scope="col">Organisation</th>
-              <th scope="col">Total expenses</th>
-              <th scope="col">Program</th>
-              <th scope="col">Mgmt &amp; general</th>
-              <th scope="col">Fundraising</th>
-              <th scope="col">Contributions</th>
-              <th scope="col">Reserves</th>
+              <th scope="col">Line item</th>
+              {rows.map((o) => (
+                <th scope="col" key={o.name}>
+                  {o.short}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {rows.map((o) => (
-              <tr key={o.name}>
-                <th scope="row">{o.name}</th>
-                <td>{usd(o.total)}</td>
-                <td>{usd(o.program)}</td>
-                <td>{usd(o.management)}</td>
-                <td>{usd(o.fundraising)}</td>
-                <td>{usd(o.contributions)}</td>
-                <td>{usd(o.reserves)}</td>
+            {FIGURES.map((f) => (
+              <tr key={f.label}>
+                <th scope="row">
+                  {f.label}
+                  <span className={d.lineRef}>{f.line}</span>
+                </th>
+                {rows.map((o) => (
+                  <td key={o.name}>
+                    <span className={d.full}>{usd(o[f.key])}</span>
+                    <span className={d.compact}>
+                      {compact(o[f.key])}
+                    </span>
+                  </td>
+                ))}
               </tr>
             ))}
           </tbody>

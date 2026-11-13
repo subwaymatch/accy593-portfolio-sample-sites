@@ -22,7 +22,9 @@ export default function PastelGlassPage() {
             <span className={s.monogram} aria-hidden="true">
               SR
             </span>
-            Sofia Ramírez
+            <span>
+              Sofia<span className={s.brandLast}> Ramírez</span>
+            </span>
           </a>
           <ul className={s.navLinks}>
             <li>

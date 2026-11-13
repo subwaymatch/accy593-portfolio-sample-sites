@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import d from "./details.module.css";
 
 // Sample data: illustrative and rounded, reconstructed for this portfolio.
@@ -12,28 +12,37 @@ const VISITS = [31, 48, 52, 44, 37, 26]; // total walk-ins per block, all 10 Sat
 
 const COLORS = { before: "#d0683c", after: "#6a4fb8" };
 
-const W = 640;
 const H = 300;
 const M = { top: 16, right: 12, bottom: 44, left: 44 };
-const PW = W - M.left - M.right;
 const PH = H - M.top - M.bottom;
 const Y_MAX = 60;
-const BAR = 22;
 const GAP = 2;
 
 const y = (v: number) => M.top + PH - (v / Y_MAX) * PH;
-const band = PW / BLOCKS.length;
 
 /** Column with a 4px rounded top, square at the baseline. */
-function column(x: number, value: number) {
+function column(x: number, value: number, bar: number) {
   const top = y(value);
   const base = y(0);
   const r = Math.min(4, (base - top) / 2);
-  return `M${x},${base} V${top + r} Q${x},${top} ${x + r},${top} H${x + BAR - r} Q${x + BAR},${top} ${x + BAR},${top + r} V${base} Z`;
+  return `M${x},${base} V${top + r} Q${x},${top} ${x + r},${top} H${x + bar - r} Q${x + bar},${top} ${x + bar},${top + r} V${base} Z`;
 }
 
 export default function WaitTimeChart() {
   const [active, setActive] = useState<number | null>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  // Draw the SVG at the container's real pixel width so labels never shrink below 12px on a phone.
+  const [W, setW] = useState(640);
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => setW(Math.max(280, Math.round(entry.contentRect.width))));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const PW = W - M.left - M.right;
+  const band = PW / BLOCKS.length;
+  const BAR = Math.min(22, (band - 10) / 2);
   const visits = VISITS.reduce((a, b) => a + b, 0);
   const weighted = (arr: number[]) => Math.round(arr.reduce((a, v, i) => a + v * VISITS[i], 0) / visits);
   const totalBefore = weighted(BEFORE);
@@ -56,7 +65,7 @@ export default function WaitTimeChart() {
         </li>
       </ul>
 
-      <div className={d.chartWrap}>
+      <div className={d.chartWrap} ref={wrapRef}>
         <svg viewBox={`0 0 ${W} ${H}`} className={d.svg} role="img" aria-label="Grouped column chart. The peak wait at 11 to 12 fell from 52 to 31 minutes after the change.">
           {[0, 10, 20, 30, 40, 50, 60].map((t) => (
             <g key={t}>
@@ -77,8 +86,8 @@ export default function WaitTimeChart() {
             const dim = active !== null && active !== i;
             return (
               <g key={b} opacity={dim ? 0.45 : 1}>
-                <path d={column(x1, BEFORE[i])} fill={COLORS.before} />
-                <path d={column(x2, AFTER[i])} fill={COLORS.after} />
+                <path d={column(x1, BEFORE[i], BAR)} fill={COLORS.before} />
+                <path d={column(x2, AFTER[i], BAR)} fill={COLORS.after} />
                 {i === 2 && (
                   <>
                     <text x={x1 + BAR / 2} y={y(BEFORE[i]) - 6} textAnchor="middle" className={d.valueLabel}>
