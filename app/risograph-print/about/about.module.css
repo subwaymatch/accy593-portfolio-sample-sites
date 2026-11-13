@@ -1,0 +1,91 @@
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+  padding-top: clamp(36px, 6vw, 72px);
+}
+
+.portraitWrap {
+  border: 2.5px solid var(--ink);
+  background: var(--paper-2);
+  padding: 10px;
+  box-shadow: 10px 10px 0 var(--orange);
+  transform: rotate(-1.5deg);
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.title {
+  font-size: clamp(2.8rem, 7vw, 5.2rem);
+  margin: 0 0 20px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: clamp(48px, 7vw, 80px);
+}
+
+.panel {
+  border: 2.5px solid var(--ink);
+  background: var(--paper-2);
+  padding: 22px 24px;
+}
+
+.panelTitle {
+  font-family: var(--riso-display), sans-serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+
+.list {
+  margin: 0;
+  padding-left: 1.1em;
+  list-style: square;
+}
+
+.list li::marker {
+  color: var(--orange);
+}
+
+.prose p {
+  margin: 0 0 1em;
+  max-width: 40rem;
+}
+
+.list li {
+  margin-bottom: 8px;
+}
+
+.contact {
+  margin-top: clamp(48px, 7vw, 80px);
+  padding: clamp(24px, 4vw, 44px);
+  border: 2.5px solid var(--ink);
+  background-color: var(--paper-2);
+  box-shadow: 10px 10px 0 var(--teal);
+}
+
+.contactTitle {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  margin: 0 0 12px;
+}
+
+@media (max-width: 900px) {
+  .intro,
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .portraitWrap {
+    max-width: 360px;
+  }
+}
