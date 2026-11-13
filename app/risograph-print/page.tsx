@@ -17,7 +17,7 @@ export default function RisoHome() {
   return (
     <>
       <section className={`${styles.wrap} ${styles.hero}`}>
-        <div>
+        <div className={styles.prose}>
           <p className={styles.eyebrow}>MS Accountancy · Gies · Class of 2027</p>
           <h1 className={`${styles.misreg} ${styles.heroTitle}`}>
             Liam

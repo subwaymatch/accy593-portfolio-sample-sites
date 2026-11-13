@@ -3,15 +3,15 @@ import s from "./showcase.module.css";
 // Personal training log, miles per week.
 const planned = [18, 21, 24, 20, 26, 29, 32, 26, 33, 36, 38, 30, 40, 34, 24, 14];
 const actual = [17, 21, 22, 19, 26, 27, 32, 18, 31, 36, 37, 30, 38, 34, 23, 13];
-const notes: Record<number, string> = {
-  8: "Midterms + a cold",
-  13: "Peak: 20-mile long run",
-};
+const notes: { week: number; text: string }[] = [
+  { week: 8, text: "Midterms and a head cold" },
+  { week: 13, text: "Peak week, 20-mile long run" },
+];
 
 export default function MileageChart() {
-  const W = 560;
-  const H = 300;
-  const m = { l: 40, r: 12, t: 28, b: 40 };
+  const W = 420;
+  const H = 280;
+  const m = { l: 34, r: 8, t: 34, b: 40 };
   const pw = W - m.l - m.r;
   const ph = H - m.t - m.b;
   const max = 45;
@@ -71,21 +71,34 @@ export default function MileageChart() {
                     {i + 1}
                   </text>
                 ) : null}
-                {notes[i + 1] && (
-                  <text x={x + w / 2} y={y(Math.max(p, actual[i])) - 8} textAnchor="middle" className={s.axisNote}>
-                    {notes[i + 1]}
-                  </text>
+                {notes.map((n, k) =>
+                  n.week === i + 1 ? (
+                    <g key={k}>
+                      <line x1={x + w / 2} x2={x + w / 2} y1={22} y2={y(Math.max(p, actual[i])) - 4} stroke="#ff6a3d" strokeWidth={1.5} />
+                      <circle cx={x + w / 2} cy={13} r={10} fill="#ff6a3d" stroke="#1b2250" strokeWidth={1.5} />
+                      <text x={x + w / 2} y={18} textAnchor="middle" className={s.axisLg}>
+                        {k + 1}
+                      </text>
+                    </g>
+                  ) : null,
                 )}
               </g>
             );
           })}
-          <text x={m.l} y={14} className={s.axisLg}>
-            miles / week
+          <text x={m.l - 8} y={y(max) - 2} textAnchor="end" className={s.axisDimLg}>
+            mi
           </text>
           <text x={W - m.r} y={H - 4} textAnchor="end" className={s.axisLg}>
             week
           </text>
         </svg>
+        <ol className={s.noteList}>
+          {notes.map((n, k) => (
+            <li key={n.week}>
+              <span className={s.noteNum}>{k + 1}</span> Week {n.week}: {n.text}
+            </li>
+          ))}
+        </ol>
         <figcaption className={s.caption}>My own log. Dashed outline is the plan, teal is what I actually ran.</figcaption>
       </figure>
       <div className={s.memo}>

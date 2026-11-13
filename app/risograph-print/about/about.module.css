@@ -50,6 +50,16 @@
 .list {
   margin: 0;
   padding-left: 1.1em;
+  list-style: square;
+}
+
+.list li::marker {
+  color: var(--orange);
+}
+
+.prose p {
+  margin: 0 0 1em;
+  max-width: 40rem;
 }
 
 .list li {

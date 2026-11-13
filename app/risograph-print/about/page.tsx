@@ -30,7 +30,7 @@ export default function AboutPage() {
             height={1536}
           />
         </div>
-        <div>
+        <div className={a.prose}>
           <p className={styles.eyebrow}>About</p>
           <h1 className={`${styles.misreg} ${a.title}`}>Hi, I&apos;m Liam.</h1>
           <p className={styles.lede}>
@@ -83,7 +83,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section id="contact" className={a.contact}>
+      <section id="contact" className={`${a.contact} ${a.prose}`}>
         <h2 className={`${styles.misreg} ${a.contactTitle}`}>Say hello</h2>
         <p>
           I&apos;m looking for full-time roles starting summer 2027 in FP&amp;A, advisory or

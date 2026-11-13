@@ -26,11 +26,11 @@
 /* paper grain: an SVG noise tile multiplied over the whole page */
 .root::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.45;
+  opacity: 0.32;
   mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.13 0 0 0 0 0.31 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -227,7 +227,22 @@
 }
 
 .section {
-  padding: clamp(48px, 7vw, 88px) 0 0;
+  padding-top: clamp(48px, 7vw, 88px);
+}
+
+/* Tailwind preflight zeroes paragraph margins and list bullets; restore them where we want prose. */
+.prose p {
+  margin: 0 0 1em;
+}
+
+.prose ul {
+  list-style: disc;
+  padding-left: 1.2em;
+}
+
+.prose ol {
+  list-style: decimal;
+  padding-left: 1.2em;
 }
 
 .sectionHead {
@@ -257,6 +272,7 @@
 }
 
 .lede {
+  margin: 0 0 18px;
   font-size: clamp(1.1rem, 1.6vw, 1.3rem);
   line-height: 1.5;
   max-width: 38rem;

@@ -10,7 +10,7 @@
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
   gap: 16px;
 }
 
@@ -103,7 +103,35 @@
 }
 
 .chartNarrow {
-  max-width: 720px;
+  max-width: 600px;
+}
+
+.noteList {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  font-size: 0.9rem;
+}
+
+.noteNum {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-right: 4px;
+  border-radius: 50%;
+  background: var(--orange);
+  border: 1.5px solid var(--ink);
+  font: 700 0.75rem var(--riso-mono), monospace;
+}
+
+.chartTall {
+  display: none;
+  width: 100%;
+  height: auto;
 }
 
 .axis {
@@ -116,9 +144,30 @@
   fill: var(--muted);
 }
 
+.axisMonth {
+  font: 700 12px var(--riso-mono), monospace;
+  fill: var(--blue);
+  text-transform: uppercase;
+}
+
+.barLabel {
+  font: 700 11px var(--riso-mono), monospace;
+  fill: #fbf8f1;
+}
+
+.barLabelDark {
+  font: 700 11px var(--riso-mono), monospace;
+  fill: var(--ink);
+}
+
 .axisLg {
   font: 14px var(--riso-mono), monospace;
   fill: var(--ink);
+}
+
+.axisDimLg {
+  font: 13px var(--riso-mono), monospace;
+  fill: var(--muted);
 }
 
 .axisNote {
@@ -153,7 +202,21 @@
 
 .memoList {
   margin: 0;
-  padding-left: 1.2em;
+  padding-left: 1.4em;
+}
+
+ul.memoList {
+  list-style: disc;
+}
+
+ol.memoList {
+  list-style: decimal;
+}
+
+.memoList li::marker {
+  font-family: var(--riso-mono), monospace;
+  font-weight: 700;
+  color: var(--orange);
 }
 
 .memoList li {
@@ -176,6 +239,11 @@
 .assumptions ul {
   margin: 0;
   padding-left: 1.1em;
+  list-style: disc;
+}
+
+.assumptions li {
+  margin-bottom: 4px;
 }
 
 /* ---------- tables ---------- */
@@ -854,7 +922,15 @@
 .recipeBody ul,
 .recipeBody ol {
   margin: 0;
-  padding-left: 1.2em;
+  padding-left: 1.3em;
+}
+
+.recipeBody ul {
+  list-style: disc;
+}
+
+.recipeBody ol {
+  list-style: decimal;
 }
 
 .recipeBody li {
@@ -937,6 +1013,43 @@
 }
 
 @media (max-width: 640px) {
+  .chartWide {
+    display: none;
+  }
+
+  .chartTall {
+    display: block;
+  }
+
+  .stats {
+    gap: 10px;
+  }
+
+  .stat {
+    padding: 10px 12px;
+  }
+
+  .statNum {
+    font-size: 1.25rem;
+  }
+
+  .table {
+    font-size: 0.8rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 6px 6px;
+  }
+
+  .table thead th {
+    font-size: 0.7rem;
+  }
+
+  .figure {
+    padding: 12px;
+  }
+
   .zine {
     grid-template-columns: 1fr;
   }

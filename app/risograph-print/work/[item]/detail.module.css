@@ -72,6 +72,11 @@
 .did {
   margin: 0;
   padding-left: 1.2em;
+  list-style: square;
+}
+
+.did li::marker {
+  color: var(--orange);
 }
 
 .did li {

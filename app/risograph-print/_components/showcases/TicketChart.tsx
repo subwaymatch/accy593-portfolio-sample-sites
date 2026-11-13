@@ -32,6 +32,55 @@ const tierColour: Record<Tier, string> = {
 
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 
+// Phone layout: one row per game, so labels stay readable at 390px.
+function TallChart({ fills }: { fills: number[] }) {
+  const W = 360;
+  const rowH = 27;
+  const top = 26;
+  const labelW = 82;
+  const barX = labelW + 6;
+  const barMax = W - barX - 44;
+  const H = top + games.length * rowH + 8;
+  return (
+    <svg className={s.chartTall} viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Seats filled and average price for each of 16 home games (sample data). Weekday non-conference games are the emptiest; rivalry and marquee weekend games are almost full.">
+      <text x={0} y={14} className={s.axisDim}>
+        Game
+      </text>
+      <text x={barX} y={14} className={s.axisDim}>
+        Seats filled
+      </text>
+      <text x={W} y={14} textAnchor="end" className={s.axisDim}>
+        Price
+      </text>
+      {[0.5, 1].map((f) => (
+        <line key={f} x1={barX + barMax * f} x2={barX + barMax * f} y1={top - 4} y2={H - 6} stroke="#1b2250" strokeOpacity={0.2} strokeDasharray="3 4" />
+      ))}
+      {games.map((g, i) => {
+        const y = top + i * rowH;
+        const w = barMax * fills[i];
+        return (
+          <g key={g.date}>
+            <text x={0} y={y + 15} className={s.axis}>
+              {g.date}
+            </text>
+            <text x={54} y={y + 15} className={s.axisDim}>
+              {g.day}
+            </text>
+            <rect x={barX + 3} y={y + 5} width={w} height={rowH - 9} fill="#ff6a3d" opacity={0.35} />
+            <rect x={barX} y={y + 2} width={w} height={rowH - 9} fill={tierColour[g.tier]} stroke="#1b2250" strokeWidth={1.2} />
+            <text x={barX + 6} y={y + 14} className={g.tier === "Non-conference" ? s.barLabelDark : s.barLabel}>
+              {Math.round(fills[i] * 100)}%
+            </text>
+            <text x={W} y={y + 15} textAnchor="end" className={s.axis}>
+              ${g.price}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 export default function TicketChart() {
   const W = 800;
   const H = 390;
@@ -90,8 +139,9 @@ export default function TicketChart() {
             Avg. paid price
           </li>
         </ul>
+        <TallChart fills={fills} />
         <svg
-          className={s.chart}
+          className={`${s.chart} ${s.chartWide}`}
           viewBox={`0 0 ${W} ${H}`}
           role="img"
           aria-labelledby="ticket-chart-title ticket-chart-desc"
@@ -134,12 +184,17 @@ export default function TicketChart() {
               >
                 <title>{`${g.date} vs ${g.opp} (${g.day}): ${g.att.toLocaleString("en-US")} fans, ${pct(fills[i])} full, $${g.price} average`}</title>
               </rect>
-              <text x={cx(i)} y={H - m.b + 20} textAnchor="middle" className={s.axis}>
-                {g.date}
+              <text x={cx(i)} y={H - m.b + 18} textAnchor="middle" className={s.axis}>
+                {g.date.split(" ")[1]}
               </text>
-              <text x={cx(i)} y={H - m.b + 36} textAnchor="middle" className={s.axisDim}>
+              <text x={cx(i)} y={H - m.b + 33} textAnchor="middle" className={s.axisDim}>
                 {g.day}
               </text>
+              {(i === 0 || games[i - 1].date.split(" ")[0] !== g.date.split(" ")[0]) && (
+                <text x={cx(i) - slot / 2 + 2} y={H - m.b + 54} className={s.axisMonth}>
+                  {g.date.split(" ")[0]}
+                </text>
+              )}
             </g>
           ))}
           <path d={pricePath} fill="none" stroke="#1b2250" strokeWidth={2.5} strokeLinejoin="round" />
@@ -155,7 +210,8 @@ export default function TicketChart() {
         </svg>
         <figcaption className={s.caption}>
           Sample data I created for practice: 16 home games in a 15,500-seat arena. Bars show the share of seats
-          filled, coloured by opponent tier. The line is the average paid ticket price (right axis).
+          filled, coloured by opponent tier. Average paid price is the line on the right axis (on a phone, the
+          right-hand column).
         </figcaption>
       </figure>
 
