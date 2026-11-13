@@ -75,7 +75,12 @@ export default function WorkBrowser() {
   useEffect(() => {
     const fromHash = () => {
       const m = window.location.hash.match(/^#work\/([\w-]+)$/);
-      if (m && workItems.some((w) => w.slug === m[1])) setOpenSlug(m[1]);
+      if (m && workItems.some((w) => w.slug === m[1])) {
+        // opened from the explorer tree: hand focus back to that link on close
+        const a = document.activeElement;
+        if (a instanceof HTMLAnchorElement) returnFocus.current = a;
+        setOpenSlug(m[1]);
+      }
     };
     fromHash();
     window.addEventListener("hashchange", fromHash);

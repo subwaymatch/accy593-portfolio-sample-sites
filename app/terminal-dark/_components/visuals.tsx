@@ -92,16 +92,16 @@ export function AgingChart() {
                 {hover === i && h > 0 && (
                   <g pointerEvents="none">
                     <rect
-                      x={Math.min(Math.max(cx - 82, m.left), W - m.right - 164)}
+                      x={Math.min(Math.max(cx - 100, m.left), W - m.right - 200)}
                       y={Math.max(top - 64, 2)}
-                      width={164}
+                      width={200}
                       height={44}
                       rx={4}
                       fill="#161b1e"
                       stroke="#323b40"
                     />
                     <text
-                      x={Math.min(Math.max(cx - 82, m.left), W - m.right - 164) + 10}
+                      x={Math.min(Math.max(cx - 100, m.left), W - m.right - 200) + 10}
                       y={Math.max(top - 64, 2) + 18}
                       fontSize={12}
                       fill="#f2f7f3"
@@ -110,7 +110,7 @@ export function AgingChart() {
                       {fmtUSD(d.balance)}
                     </text>
                     <text
-                      x={Math.min(Math.max(cx - 82, m.left), W - m.right - 164) + 10}
+                      x={Math.min(Math.max(cx - 100, m.left), W - m.right - 200) + 10}
                       y={Math.max(top - 64, 2) + 35}
                       fontSize={11}
                       fill="#8f9b94"

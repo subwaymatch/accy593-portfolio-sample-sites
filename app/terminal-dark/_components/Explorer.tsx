@@ -50,16 +50,29 @@ export default function Explorer() {
                 ▾ work/
               </a>
               <ul>
-                <li>
-                  <a className={styles.treeLink} href="#work-business">
-                    business/ <span className={styles.treeCount}>{businessCount}</span>
-                  </a>
-                </li>
-                <li>
-                  <a className={styles.treeLink} href="#work-personal">
-                    personal/ <span className={styles.treeCount}>{personalCount}</span>
-                  </a>
-                </li>
+                {(["business", "personal"] as const).map((cat) => (
+                  <li key={cat}>
+                    <a className={styles.treeLink} href={`#work-${cat}`}>
+                      {cat}/ <span className={styles.treeCount}>{cat === "business" ? businessCount : personalCount}</span>
+                    </a>
+                    <ul>
+                      {workItems
+                        .filter((w) => w.category === cat)
+                        .map((w) => (
+                          <li key={w.slug}>
+                            <a
+                              className={`${styles.treeLink} ${styles.treeFile}`}
+                              href={`#work/${w.slug}`}
+                              title={w.title}
+                              aria-label={`Open ${w.title}`}
+                            >
+                              <span>{w.file.split("/").filter(Boolean).pop()}</span>
+                            </a>
+                          </li>
+                        ))}
+                    </ul>
+                  </li>
+                ))}
               </ul>
             </li>
             <li>

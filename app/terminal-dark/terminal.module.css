@@ -88,7 +88,26 @@
 .tree {
   list-style: none;
   margin: 0;
-  padding: 0 8px;
+  padding: 0 8px 12px;
+  overflow-y: auto;
+  min-height: 0;
+  flex: 1;
+}
+
+.treeFile {
+  font-size: 12.5px;
+  color: #aab5ae !important;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.treeFile::before {
+  content: "·";
+  color: var(--line-2);
+}
+.treeFile span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .tree ul {
@@ -130,6 +149,7 @@
 
 .explorerFoot {
   margin-top: auto;
+  flex: none;
   padding: 12px 16px;
   border-top: 1px solid var(--line);
   color: var(--muted);
@@ -232,6 +252,30 @@
   color: var(--muted);
   letter-spacing: 0.08em;
   margin: 0 0 8px;
+}
+
+.sectionHeading {
+  font-family: var(--mono-font);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #f2f7f3;
+  margin: 0 0 10px;
+}
+.sectionHeading span {
+  color: var(--green);
+}
+
+.sectionLede {
+  font-size: 16.5px;
+  color: #c4ccc6;
+  max-width: 62ch;
+  margin: 0 0 32px;
+}
+.sectionLede strong {
+  color: var(--text);
+  font-weight: 500;
 }
 
 /* ---------- window chrome ---------- */
@@ -511,6 +555,7 @@
 /* ---------- dialog ---------- */
 
 .dialog {
+  margin: auto;
   width: min(960px, calc(100vw - 32px));
   max-width: none;
   max-height: calc(100dvh - 48px);
@@ -607,6 +652,10 @@
   font-family: var(--mono-font);
   font-size: 0.88em;
   color: var(--amber);
+}
+.prose pre code {
+  font-size: inherit;
+  color: inherit;
 }
 
 .code {
@@ -914,9 +963,11 @@
   }
   .aboutGrid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
   }
   .portrait {
-    max-width: 320px;
+    order: -1;
+    max-width: 220px;
   }
 }
 
@@ -946,5 +997,15 @@
   .groupHead {
     flex-direction: column;
     gap: 2px;
+  }
+  .factsBody dt {
+    float: none;
+    width: auto;
+  }
+  .factsBody dd {
+    margin: 0 0 6px;
+  }
+  .portrait {
+    max-width: 180px;
   }
 }

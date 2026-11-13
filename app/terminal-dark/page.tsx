@@ -126,12 +126,15 @@ export default function TerminalDarkPage() {
           {/* ---------------- work ---------------- */}
           <section id="work" className={styles.section} aria-labelledby="work-title">
             <Prompt cmd="ls -l work/" />
-            <h2 id="work-title" className={styles.sectionTitle}>
-              {workItems.length} PROJECTS · {business} BUSINESS &amp; ANALYTICS · {workItems.length - business} PERSONAL
+            <h2 id="work-title" className={styles.sectionHeading}>
+              work<span>/</span>
             </h2>
-            <p className={styles.contactNote} style={{ marginBottom: 28 }}>
-              Open any project for the details: code, charts, sample data and what I&apos;d do differently. Esc closes
-              the panel.
+            <p className={styles.sectionLede}>
+              <strong>
+                {workItems.length} projects: {business} on accounting and analytics, {workItems.length - business} I made
+                for fun.
+              </strong>{" "}
+              Open any of them for the details: code, charts, sample data and what I&apos;d do differently.
             </p>
             <WorkBrowser />
           </section>
@@ -141,8 +144,8 @@ export default function TerminalDarkPage() {
             <Prompt cmd="./contact.sh" />
             <Window file="contact.sh: output">
               <div className={styles.contactBody}>
-                <h2 id="contact-title" className={styles.sectionTitle} style={{ color: "#ffb000" }}>
-                  LET&apos;S TALK
+                <h2 id="contact-title" className={styles.sectionHeading}>
+                  let&apos;s talk<span>_</span>
                 </h2>
                 <p className={styles.contactNote}>
                   I&apos;m looking for full-time roles starting in 2027 in accounting data engineering, finance
