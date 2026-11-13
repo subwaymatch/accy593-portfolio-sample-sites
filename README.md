@@ -39,14 +39,34 @@ npm run dev
 
 ## Deploy to Cloudflare Workers
 
-```bash
-npm run build
-```
+This project is configured for the Cloudflare CLI (`cf`) through
+`cloudflare.config.ts`, not through a Wrangler config file. Plain
+`npx wrangler deploy` does not work with it.
+
+### From your machine
 
 ```bash
 npm run deploy
 ```
 
-`npm run deploy` runs `vinext-cloudflare deploy`. It needs a Cloudflare login
-(`npx cf login`) or the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`
-environment variables. The Worker name is set in `cloudflare.config.ts`.
+`npm run deploy` runs `vinext-cloudflare deploy`, which builds the app and
+deploys it. It needs a Cloudflare login (`npx cf login`) or the
+`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` environment variables.
+
+### With Workers Builds (Git integration)
+
+Workers Builds defaults to `npx wrangler deploy`, which fails here with
+"It looks like you've run `wrangler deploy` in a project that builds for the
+Cloudflare CLI". In the Worker's **Settings → Build**, set:
+
+| Setting | Value |
+|---|---|
+| Build command | *(leave empty)* |
+| Deploy command | `npm run deploy` |
+| Non-production branch deploy command | `npx vinext-cloudflare previews deploy` |
+
+- The deploy command already builds the app, so the build command stays empty.
+- The Worker connected to the repository must be named
+  `accy593-portfolio-samples`, the `name` in `cloudflare.config.ts`.
+- `.node-version` pins Node 22.23.4, because `cf` needs Node 22.23+ or 24.22+
+  and the build image's default Node is older.
