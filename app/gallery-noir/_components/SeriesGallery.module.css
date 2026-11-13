@@ -3,8 +3,8 @@
 }
 
 .hint {
-  font-size: 0.8rem;
-  color: var(--gn-faint);
+  font-size: 0.9rem;
+  color: var(--gn-muted);
   margin: 0 0 2rem;
   letter-spacing: 0.02em;
 }
@@ -79,7 +79,7 @@
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(6, 5, 5, 0.97);
+  background: #070606;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   animation: lbIn 0.45s ease both;

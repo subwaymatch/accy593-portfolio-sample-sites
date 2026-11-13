@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     "Grace Nguyen studies accountancy at the University of Illinois and works where valuation meets design: brand value, intangible assets, editorial design, photography and cello.",
 };
 
+function firstSentence(text: string) {
+  const i = text.indexOf(". ");
+  return i === -1 ? text : text.slice(0, i + 1);
+}
+
 export default function GalleryNoirHome() {
   const curated = CURATED.map((slug) => getWork(slug)).filter((w): w is Work => Boolean(w));
 
@@ -37,6 +42,9 @@ export default function GalleryNoirHome() {
             Enter the exhibition <span aria-hidden="true">→</span>
           </Link>
         </div>
+        <span className={s.scrollCue} aria-hidden="true">
+          Scroll
+        </span>
       </section>
 
       <section className={`${s.container} ${s.statement}`}>
@@ -81,9 +89,11 @@ export default function GalleryNoirHome() {
                 </span>
                 <h3 className={s.pieceTitle}>{w.title}</h3>
                 <p className={s.pieceSub}>{w.subtitle}</p>
+                <p className={s.pieceSummary}>{firstSentence(w.summary)}</p>
                 <p className={s.pieceMeta}>
                   {w.medium}, {w.year}
                 </p>
+                <span className={s.pieceMore}>View the work</span>
               </div>
             </Link>
           ))}

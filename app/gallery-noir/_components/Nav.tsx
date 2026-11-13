@@ -54,48 +54,50 @@ export default function Nav() {
     href === BASE ? pathname === BASE || pathname === `${BASE}/` : pathname.startsWith(href);
 
   return (
-    <header className={`${styles.header} ${scrolled || open ? styles.solid : ""}`}>
-      <div className={styles.bar}>
-        <Link href={BASE} className={styles.brand} aria-label="Grace Nguyen, home">
-          <span className={styles.brandName}>Grace Nguyen</span>
-          <span className={styles.brandRule} aria-hidden="true" />
-          <span className={styles.brandTag}>Accountancy &amp; Image</span>
-        </Link>
-
-        <nav aria-label="Main" className={styles.desktopNav}>
-          <ul>
-            {LINKS.slice(1).map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className={isActive(l.href) ? styles.active : undefined}
-                  aria-current={isActive(l.href) ? "page" : undefined}
-                >
-                  {l.label}
-                </Link>
+    <>
+      <header className={`${styles.header} ${scrolled || open ? styles.solid : ""}`}>
+        <div className={styles.bar}>
+          <Link href={BASE} className={styles.brand} aria-label="Grace Nguyen, home">
+            <span className={styles.brandName}>Grace Nguyen</span>
+            <span className={styles.brandRule} aria-hidden="true" />
+            <span className={styles.brandTag}>Accountancy &amp; Image</span>
+          </Link>
+  
+          <nav aria-label="Main" className={styles.desktopNav}>
+            <ul>
+              {LINKS.slice(1).map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className={isActive(l.href) ? styles.active : undefined}
+                    aria-current={isActive(l.href) ? "page" : undefined}
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <a href={`mailto:${PERSON.email}`}>Contact</a>
               </li>
-            ))}
-            <li>
-              <a href={`mailto:${PERSON.email}`}>Contact</a>
-            </li>
-          </ul>
-        </nav>
-
-        <button
-          ref={toggleRef}
-          type="button"
-          className={styles.toggle}
-          aria-expanded={open}
-          aria-controls="gn-menu"
-          onClick={() => setOpen((o) => !o)}
-        >
-          <span className={styles.toggleLabel}>{open ? "Close" : "Menu"}</span>
-          <span className={`${styles.toggleIcon} ${open ? styles.toggleIconOpen : ""}`} aria-hidden="true">
-            <span />
-            <span />
-          </span>
-        </button>
-      </div>
+            </ul>
+          </nav>
+  
+          <button
+            ref={toggleRef}
+            type="button"
+            className={styles.toggle}
+            aria-expanded={open}
+            aria-controls="gn-menu"
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span className={styles.toggleLabel}>{open ? "Close" : "Menu"}</span>
+            <span className={`${styles.toggleIcon} ${open ? styles.toggleIconOpen : ""}`} aria-hidden="true">
+              <span />
+              <span />
+            </span>
+          </button>
+        </div>
+      </header>
 
       <div
         id="gn-menu"
@@ -127,6 +129,6 @@ export default function Nav() {
           </a>
         </div>
       </div>
-    </header>
+    </>
   );
 }
