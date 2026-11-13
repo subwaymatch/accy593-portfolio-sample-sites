@@ -241,7 +241,7 @@
 /* ---------- sections ---------- */
 
 .section {
-  padding: 24px 0 64px;
+  padding: 24px 0 56px;
   scroll-margin-top: 24px;
 }
 
@@ -457,6 +457,10 @@
   color: var(--muted);
 }
 
+.group:last-of-type .grid {
+  margin-bottom: 0;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -624,6 +628,9 @@
   display: block;
   width: 100%;
   height: auto;
+  max-height: min(48vh, 420px);
+  object-fit: cover;
+  background: #050607;
   border-radius: 6px;
   border: 1px solid var(--line);
   margin: 0 0 24px;
@@ -646,7 +653,19 @@
   max-width: 72ch;
 }
 .prose ul {
-  padding-left: 20px;
+  padding-left: 22px;
+  margin: 0 0 16px;
+  list-style: square;
+}
+.prose li {
+  margin-bottom: 6px;
+}
+.prose li::marker {
+  color: var(--green-dim);
+}
+.prose strong {
+  color: var(--text);
+  font-weight: 600;
 }
 .prose code {
   font-family: var(--mono-font);
@@ -863,9 +882,31 @@
 /* ---------- contact ---------- */
 
 .contactBody {
-  padding: 20px;
+  padding: 24px;
   font-family: var(--mono-font);
   font-size: 14px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 32px;
+}
+.nowBox {
+  border-left: 1px solid var(--line);
+  padding-left: 28px;
+}
+.nowBox ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  font-family: var(--sans-font);
+  font-size: 15px;
+  color: #c4ccc6;
+}
+.nowBox li::before {
+  content: "- ";
+  color: var(--amber);
+  font-family: var(--mono-font);
 }
 .contactList {
   list-style: none;
@@ -969,6 +1010,15 @@
     order: -1;
     max-width: 220px;
   }
+  .contactBody {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .nowBox {
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding: 20px 0 0;
+  }
 }
 
 @media (max-width: 520px) {
@@ -1006,6 +1056,16 @@
     margin: 0 0 6px;
   }
   .portrait {
-    max-width: 180px;
+    max-width: 168px;
+  }
+  .portraitCaption {
+    display: none;
+  }
+  .contactBody {
+    padding: 18px;
+  }
+  .dialogNav .btn {
+    font-size: 12.5px;
+    padding: 8px 12px;
   }
 }

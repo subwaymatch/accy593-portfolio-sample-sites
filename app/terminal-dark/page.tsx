@@ -144,37 +144,50 @@ export default function TerminalDarkPage() {
             <Prompt cmd="./contact.sh" />
             <Window file="contact.sh: output">
               <div className={styles.contactBody}>
-                <h2 id="contact-title" className={styles.sectionHeading}>
-                  let&apos;s talk<span>_</span>
-                </h2>
-                <p className={styles.contactNote}>
-                  I&apos;m looking for full-time roles starting in 2027 in accounting data engineering, finance
-                  systems, or technology-focused advisory. I&apos;m also happy to compare notes with anyone who has
-                  opinions about automating the close.
-                </p>
-                <ul className={styles.contactList}>
-                  <li>
-                    <span className={styles.contactKey}>email</span>
-                    <a href={`mailto:${person.email}`}>{person.email}</a>
-                  </li>
-                  <li>
-                    <span className={styles.contactKey}>linkedin</span>
-                    <a href={person.linkedin} target="_blank" rel="noopener noreferrer">
-                      linkedin.com ↗
-                    </a>
-                  </li>
-                  <li>
-                    <span className={styles.contactKey}>based in</span>
-                    <span>Champaign, IL</span>
-                  </li>
-                  <li>
-                    <span className={styles.contactKey}>replies</span>
-                    <span>usually within a day</span>
-                  </li>
-                </ul>
-                <a className={`${styles.btn} ${styles.btnSolid}`} href={`mailto:${person.email}`}>
-                  $ mail dev.patel ↵
-                </a>
+                <div>
+                  <h2 id="contact-title" className={styles.sectionHeading}>
+                    let&apos;s talk<span>_</span>
+                  </h2>
+                  <p className={styles.contactNote}>
+                    I&apos;m looking for full-time roles starting in 2027 in accounting data engineering, finance
+                    systems, or technology-focused advisory. I&apos;m also happy to compare notes with anyone who has
+                    opinions about automating the close.
+                  </p>
+                  <ul className={styles.contactList}>
+                    <li>
+                      <span className={styles.contactKey}>email</span>
+                      <a href={`mailto:${person.email}`}>{person.email}</a>
+                    </li>
+                    <li>
+                      <span className={styles.contactKey}>linkedin</span>
+                      <a href={person.linkedin} target="_blank" rel="noopener noreferrer">
+                        linkedin.com ↗
+                      </a>
+                    </li>
+                    <li>
+                      <span className={styles.contactKey}>based in</span>
+                      <span>Champaign, IL</span>
+                    </li>
+                    <li>
+                      <span className={styles.contactKey}>replies</span>
+                      <span>usually within a day</span>
+                    </li>
+                  </ul>
+                  <a className={`${styles.btn} ${styles.btnSolid}`} href={`mailto:${person.email}`}>
+                    $ mail dev.patel ↵
+                  </a>
+                </div>
+                <div className={styles.nowBox}>
+                  <p className={styles.prompt}>
+                    <span className={styles.promptPath}>$</span> cat now.txt
+                  </p>
+                  <ul>
+                    <li>Finishing the AP aging write-up for ACCY 593</li>
+                    <li>Rebuilding my bank rec matcher as a dbt model on a sample GL, to see what SQL does better</li>
+                    <li>Reading about continuous close and how much of it is real</li>
+                    <li>Re-lubing two scratchy switches I rushed the first time</li>
+                  </ul>
+                </div>
               </div>
             </Window>
           </section>

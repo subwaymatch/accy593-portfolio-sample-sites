@@ -33,7 +33,6 @@ function Thumb({ item, eager }: { item: WorkItem; eager: boolean }) {
       width={1200}
       height={800}
       loading={eager ? "eager" : "lazy"}
-      decoding="async"
       className={item.image.pixelated ? styles.pixelated : undefined}
     />
   );
@@ -112,7 +111,7 @@ export default function WorkBrowser() {
   return (
     <>
       {GROUPS.map((g) => (
-        <div key={g.id}>
+        <div key={g.id} className={styles.group}>
           <div className={styles.groupHead} id={`work-${g.id}`}>
             <h3>{g.title}</h3>
             <p>{g.blurb}</p>
@@ -190,9 +189,10 @@ export default function WorkBrowser() {
               <p className={styles.meta}>
                 <b>{item.category}</b> · {item.year} · {item.stack.join(", ")}
               </p>
-              {item.image.src && item.slug !== "close-dag" && (
+              {item.image.src && (
                 <img
                   className={`${styles.detailImg} ${item.image.pixelated ? styles.pixelated : ""}`}
+                  style={item.image.pixelated ? { objectFit: "contain" } : undefined}
                   src={item.image.src}
                   alt={item.image.alt}
                   width={1200}
