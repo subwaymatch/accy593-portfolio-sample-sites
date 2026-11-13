@@ -67,6 +67,6 @@ Cloudflare CLI". In the Worker's **Settings → Build**, set:
 
 - The deploy command already builds the app, so the build command stays empty.
 - The Worker connected to the repository must be named
-  `accy593-portfolio-samples`, the `name` in `cloudflare.config.ts`.
+  `accy593-portfolio-sample-sites`, the `name` in `cloudflare.config.ts`.
 - `.node-version` pins Node 22.23.4, because `cf` needs Node 22.23+ or 24.22+
   and the build image's default Node is older.
