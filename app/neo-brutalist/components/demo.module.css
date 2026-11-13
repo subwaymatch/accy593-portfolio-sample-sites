@@ -1,0 +1,542 @@
+.stack {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.chartTitle {
+  font-family: var(--nb-display), sans-serif;
+  font-weight: 400;
+  font-size: 1.15rem;
+  margin: 0.8rem 0 0.6rem;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: var(--nb-body), sans-serif;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #111;
+  vertical-align: -2px;
+  margin-right: 0.3rem;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.table caption {
+  text-align: left;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.table th,
+.table td {
+  border: 2px solid #111;
+  padding: 0.45rem 0.6rem;
+  text-align: left;
+}
+
+.table thead th {
+  background: var(--yellow);
+}
+
+.table td {
+  font-variant-numeric: tabular-nums;
+}
+
+.takeaway {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-left: 8px solid var(--pink);
+  background: var(--paper);
+}
+
+.fine {
+  font-size: 0.88rem;
+  opacity: 0.85;
+}
+
+/* A/B */
+.variants {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.9rem 0 0.4rem;
+}
+
+.variants div {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.variants dt {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 2px solid #111;
+  font-weight: 700;
+  background: var(--yellow);
+}
+
+.variants div + div dt {
+  background: var(--blue);
+  color: #fff;
+}
+
+.variants dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.abGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.abPanel {
+  margin: 0;
+  border: 2px solid #111;
+  padding: 0.5rem;
+}
+
+.abPanel figcaption {
+  font-size: 0.9rem;
+  padding: 0.3rem 0.2rem 0;
+}
+
+/* calculator */
+.calc {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.fieldset {
+  border: 3px solid #111;
+  padding: 1rem;
+  margin: 0;
+  min-width: 0;
+}
+
+.fieldset:disabled {
+  opacity: 0.5;
+}
+
+.fieldset legend {
+  font-family: var(--nb-display), sans-serif;
+  padding: 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.inputBox {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 3px solid #111;
+  background: #fff;
+  padding: 0 0.6rem;
+  box-shadow: 3px 3px 0 #111;
+}
+
+.inputBox input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  padding: 0.55rem 0;
+  font: inherit;
+  font-weight: 700;
+  background: transparent;
+  outline: none;
+}
+
+.inputBox:focus-within {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.range {
+  width: 100%;
+  accent-color: #111;
+  height: 28px;
+}
+
+.result {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.bigNumber {
+  font-size: 1.3rem;
+}
+
+.bigNumber strong {
+  font-family: var(--nb-display), sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  background: var(--mint);
+  border: 3px solid #111;
+  padding: 0 0.4rem;
+  margin-left: 0.3rem;
+}
+
+.compare {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.compareRow {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.compareLabel {
+  font-weight: 700;
+}
+
+.compareBars {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.barTrack {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  border: 2px solid #111;
+  background: #fff;
+}
+
+.barTrack span {
+  position: relative;
+  padding: 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.barNow,
+.barNext {
+  position: absolute;
+  inset: 0 auto 0 0;
+}
+
+.barNow {
+  background: var(--yellow);
+}
+
+.barNext {
+  background: var(--pink);
+}
+
+/* drum machine */
+.drum {
+  display: grid;
+  gap: 1rem;
+}
+
+.drumControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1rem;
+}
+
+.drumButtons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.seq {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.seqBar {
+  flex: 1 1 0;
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+/* Bar 1 carries the 56px label column (+ one 4px gap), so give it a 60px head start. */
+.seqBar:first-child {
+  flex-basis: 60px;
+}
+
+.seqBar + .seqBar .seqRow {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.seqBar + .seqBar .seqLabelRepeat {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.barLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.seqRow {
+  display: grid;
+  grid-template-columns: 56px repeat(8, 1fr);
+  gap: 4px;
+  align-items: center;
+}
+
+.seqLabel {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.step {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px solid #111;
+  background: #fff;
+  cursor: pointer;
+  padding: 0;
+}
+
+.beat {
+  border-left-width: 5px;
+}
+
+.on-kick {
+  background: var(--blue);
+}
+
+.on-snare {
+  background: var(--pink);
+}
+
+.on-hat {
+  background: var(--mint);
+}
+
+.stepNow {
+  outline: 3px solid #111;
+  outline-offset: 1px;
+  transform: translateY(-2px);
+}
+
+/* homes */
+.homeControls {
+  display: grid;
+  gap: 1rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  border: 2px solid #111;
+  background: #fff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #111;
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--yellow);
+}
+
+.listings {
+  list-style: none;
+  margin: 0.8rem 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.listing {
+  border: 3px solid #111;
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.3rem;
+  box-shadow: 4px 4px 0 #111;
+  background: var(--paper);
+}
+
+.listPrice {
+  font-family: var(--nb-display), sans-serif;
+  font-size: 1.4rem;
+}
+
+.rentLine {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.2rem 0.4rem;
+  border: 2px solid #111;
+}
+
+.rentGood {
+  background: var(--mint);
+}
+
+.rentBad {
+  background: #ffd0e4;
+}
+
+/* palette */
+.lockup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.wordmark {
+  font-family: var(--nb-display), sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  line-height: 1;
+}
+
+.wordmark span {
+  color: var(--pink);
+  -webkit-text-stroke: 2px #111;
+}
+
+.swatches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  gap: 0.75rem;
+}
+
+.swatches li {
+  border: 3px solid #111;
+  min-height: 110px;
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-size: 0.9rem;
+  box-shadow: 4px 4px 0 #111;
+}
+
+/* post */
+.post {
+  display: grid;
+  gap: 1rem;
+  max-width: 68ch;
+}
+
+.postTitle {
+  font-family: var(--nb-display), sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+/* gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.gallery figure:first-child {
+  grid-row: span 2;
+}
+
+.list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .table {
+    font-size: 0.88rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.4rem 0.45rem;
+  }
+
+  .seq {
+    flex-direction: column;
+  }
+
+  .seqBar + .seqBar .seqRow {
+    grid-template-columns: 56px repeat(8, 1fr);
+  }
+
+  .seqBar + .seqBar .seqLabelRepeat {
+    position: static;
+    width: auto;
+    height: auto;
+    clip-path: none;
+  }
+
+  .abGrid,
+  .fieldGrid,
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery figure:first-child {
+    grid-row: auto;
+  }
+}
